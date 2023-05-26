@@ -37,7 +37,6 @@ let mapleader = ","
 " Use ; as :
 map ; :
 
-"Toggle nerd dir tree shift+ctrl+e
 noremap <Leader>t :NERDTreeToggle<CR>
 nnoremap <Leader>e :GFiles <CR>
 nnoremap <Leader>a :Files <CR>
