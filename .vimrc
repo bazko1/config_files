@@ -17,6 +17,7 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'navarasu/onedark.nvim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 augroup myvimrc
