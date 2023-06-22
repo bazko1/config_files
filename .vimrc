@@ -50,5 +50,7 @@ ca th tabp
 ca tl tabn
 
 " highlight trailing whitespaces
-highlight RedundantSpaces ctermbg=red guibg=red
-match RedundantSpaces /\s\+$/
+autocmd BufWinEnter <buffer> match Error /\s\+$/
+autocmd InsertEnter <buffer> match Error /\s\+\%#\@<!$/
+autocmd InsertLeave <buffer> match Error /\s\+$/
+autocmd BufWinLeave <buffer> call clearmatches()
