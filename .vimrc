@@ -49,3 +49,6 @@ ca tn tabnew
 ca th tabp
 ca tl tabn
 
+" highlight trailing whitespaces
+highlight RedundantSpaces ctermbg=red guibg=red
+match RedundantSpaces /\s\+$/
