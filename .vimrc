@@ -59,6 +59,7 @@ autocmd BufWinLeave <buffer> call clearmatches()
 set lcs+=space:·
 
 " show whitespaces when in visual mode
-au ModeChanged [vV\x16]*:* set list!
-au ModeChanged *:[vV\x16]* set list!
-au WinEnter,WinLeave * set list!
+au ModeChanged [vV\x16]*:* let &l:list = mode() =~# '^[vV\x16]'
+au ModeChanged *:[vV\x16]* let &l:list = mode() =~# '^[vV\x16]'
+au WinEnter,WinLeave * let &l:list = mode() =~# '^[vV\x16]'
+
