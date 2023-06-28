@@ -18,6 +18,7 @@ Plug 'navarasu/onedark.nvim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'vim-airline/vim-airline'
 call plug#end()
 
 augroup myvimrc
@@ -63,3 +64,5 @@ au ModeChanged [vV\x16]*:* let &l:list = mode() =~# '^[vV\x16]'
 au ModeChanged *:[vV\x16]* let &l:list = mode() =~# '^[vV\x16]'
 au WinEnter,WinLeave * let &l:list = mode() =~# '^[vV\x16]'
 
+" associate yaml templates
+au! BufNewFile,BufRead *.yaml.tpl set filetype=yaml
