@@ -1,11 +1,11 @@
 set number
-set syntax=on
 set backspace=2
 set nospell
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set nowrap
+syntax on
 
 call plug#begin('~/.vim/plugged')
 
@@ -18,8 +18,10 @@ Plug 'navarasu/onedark.nvim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 call plug#end()
+
+colorscheme codedark
 
 augroup myvimrc
     au!
@@ -32,8 +34,6 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-colorscheme codedark
-
 let mapleader = ","
 
 " Use ; as :
@@ -42,7 +42,7 @@ map ; :
 noremap <Leader>t :NERDTreeToggle<CR>
 nnoremap <Leader>e :GFiles <CR>
 nnoremap <Leader>a :Files <CR>
-nnoremap <silent> <Leader>s :set laststatus=0<CR>
+nnoremap <silent> <Leader>s :AirlineToggle<CR>
 nnoremap <silent> <Leader>h :tabp<CR>
 nnoremap <silent> <Leader>l :tabn<CR>
 
