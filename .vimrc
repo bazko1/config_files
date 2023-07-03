@@ -19,6 +19,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-airline/vim-airline'
+Plug 'kshenoy/vim-signature'
 call plug#end()
 
 colorscheme codedark
@@ -66,3 +67,6 @@ au WinEnter,WinLeave * let &l:list = mode() =~# '^[vV\x16]'
 
 " associate yaml templates
 au! BufNewFile,BufRead *.yaml.tpl set filetype=yaml
+
+" nohl on double esc
+nnoremap <silent> <Esc><Esc> :let @/ = ""<CR>
