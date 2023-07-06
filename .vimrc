@@ -5,6 +5,9 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set nowrap
+" make copy into * clipboard by default
+set clipboard=unnamedplus
+
 syntax on
 
 call plug#begin('~/.vim/plugged')
@@ -88,5 +91,4 @@ function! ShowDocumentation()
     call feedkeys('K', 'in')
   endif
 endfunction
-
 
