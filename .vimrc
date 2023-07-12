@@ -23,10 +23,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-airline/vim-airline'
 Plug 'kshenoy/vim-signature'
+Plug 'numToStr/Comment.nvim'
+Plug 'folke/zen-mode.nvim'
 call plug#end()
 
-colorscheme codedark
-
+"colorscheme codedark
+colorscheme zellner
+lua require('Comment').setup()
 augroup myvimrc
     au!
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
@@ -92,3 +95,22 @@ function! ShowDocumentation()
   endif
 endfunction
 
+" hide all status bar related stuff
+let s:hidden_all = 0
+function! ToggleHiddenAll()
+    if s:hidden_all  == 0
+        let s:hidden_all = 1
+        set noshowmode
+        set noruler
+        set laststatus=0
+        set noshowcmd
+    else
+        let s:hidden_all = 0
+        set showmode
+        set ruler
+        set laststatus=2
+        set showcmd
+    endif
+endfunction
+
+command ToggleHiddenAll :call ToggleHiddenAll()
