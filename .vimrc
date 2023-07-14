@@ -18,6 +18,9 @@ Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'tomasiser/vim-code-dark'
 Plug 'navarasu/onedark.nvim'
+Plug 'rakr/vim-two-firewatch'
+Plug 'rakr/vim-one'
+Plug 'endel/vim-github-colorscheme'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -27,8 +30,13 @@ Plug 'numToStr/Comment.nvim'
 Plug 'folke/zen-mode.nvim'
 call plug#end()
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+
 "colorscheme codedark
-colorscheme zellner
+colorscheme one
+set background=light
+
 lua require('Comment').setup()
 augroup myvimrc
     au!
@@ -114,3 +122,4 @@ function! ToggleHiddenAll()
 endfunction
 
 command ToggleHiddenAll :call ToggleHiddenAll()
+
