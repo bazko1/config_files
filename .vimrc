@@ -7,8 +7,8 @@ set expandtab
 set nowrap
 " make copy into * clipboard by default
 set clipboard=unnamedplus
-
 syntax on
+let mapleader = ','
 
 call plug#begin('~/.vim/plugged')
 
@@ -49,17 +49,14 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-let mapleader = ","
-
 " Use ; as :
 map ; :
 
 noremap <Leader>t :NERDTreeToggle<CR>
 nnoremap <Leader>e :GFiles <CR>
 nnoremap <Leader>a :Files <CR>
+nnoremap <Leader>h :History<CR>
 nnoremap <silent> <Leader>s :AirlineToggle<CR>
-nnoremap <silent> <Leader>h :tabp<CR>
-nnoremap <silent> <Leader>l :tabn<CR>
 
 ca tn tabnew
 ca th tabp
@@ -112,12 +109,16 @@ function! ToggleHiddenAll()
         set noruler
         set laststatus=0
         set noshowcmd
+        set showtabline=0
+        windo set nonumber
     else
         let s:hidden_all = 0
         set showmode
         set ruler
         set laststatus=2
         set showcmd
+        set showtabline=2
+        windo set number
     endif
 endfunction
 
