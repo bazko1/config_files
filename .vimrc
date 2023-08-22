@@ -39,6 +39,9 @@ let g:go_auto_type_info = 1
 let g:go_def_mapping_enabled = 0
 
 
+" changing nerdtree root dir is changed vim cwd also
+let NERDTreeChDirMode = 2
+
 "colorscheme codedark
 colorscheme one
 set background=light
@@ -69,11 +72,17 @@ ca th tabp
 ca tl tabn
 
 " highlight trailing whitespaces
-autocmd BufWinEnter <buffer> match Error /\s\+$/
-autocmd InsertEnter <buffer> match Error /\s\+\%#\@<!$/
-autocmd InsertLeave <buffer> match Error /\s\+$/
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd BufWinEnter <buffer> match ExtraWhitespace /\s\+$/
+autocmd InsertEnter <buffer> match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave <buffer> match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave <buffer> call clearmatches()
 
+function! TrimWhiteSpace()
+    %s/\s\+$//e
+endfunction
+
+command TrimWhiteSpace :call TrimWhiteSpace()
 " show whitespaces as dot when in
 set lcs+=space:·
 
