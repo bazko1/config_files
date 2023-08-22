@@ -30,8 +30,14 @@ Plug 'numToStr/Comment.nvim'
 Plug 'folke/zen-mode.nvim'
 call plug#end()
 
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Golang related options
+let g:go_auto_type_info = 1
+let g:go_def_mapping_enabled = 0
+
 
 "colorscheme codedark
 colorscheme one
@@ -85,6 +91,8 @@ nnoremap <silent> <Esc><Esc> :let @/ = ""<CR>
 " coc configurations
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gD :split<CR><Plug>(coc-definition)
+nmap <silent> gdt :vsplit<CR><Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
