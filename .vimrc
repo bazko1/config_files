@@ -28,10 +28,26 @@ Plug 'vim-airline/vim-airline'
 Plug 'kshenoy/vim-signature'
 Plug 'numToStr/Comment.nvim'
 Plug 'folke/zen-mode.nvim'
+Plug 'lervag/vimtex'
 call plug#end()
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline_powerline_fonts = 1
+
+let g:vimtex_compiler_latexmk = {'options' : [
+        \   '-verbose',
+        \   '-file-line-error',
+        \   '-synctex=1',
+        \   '-interaction=nonstopmode',
+        \   '-shell-escape',
+        \ ],}
+let g:vimtex_quickfix_ignore_filters = ['Overfull', 'Underfull']
+let g:vimtex_grammar_vlty = {'lt_directory': '/home/bazyli/gitworkspace/LanguageTool-6.2-stable'}
+set spelllang=pl
+
+" changing nerdtree root dir is changed vim cwd also
+let NERDTreeChDirMode = 2
 
 "colorscheme codedark
 colorscheme one
@@ -57,21 +73,28 @@ map ; :
 noremap <Leader>t :NERDTreeToggle<CR>
 nnoremap <Leader>e :GFiles <CR>
 nnoremap <Leader>a :Files <CR>
+nnoremap <silent> <Leader>h :History<CR>
 nnoremap <silent> <Leader>s :AirlineToggle<CR>
-nnoremap <silent> <Leader>h :tabp<CR>
-nnoremap <silent> <Leader>l :tabn<CR>
+
 
 ca tn tabnew
 ca th tabp
 ca tl tabn
 
 " highlight trailing whitespaces
-autocmd BufWinEnter <buffer> match Error /\s\+$/
-autocmd InsertEnter <buffer> match Error /\s\+\%#\@<!$/
-autocmd InsertLeave <buffer> match Error /\s\+$/
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter <buffer> match ExtraWhitespace /\s\+$/
+autocmd InsertEnter <buffer> match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave <buffer> match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave <buffer> call clearmatches()
 
-" show whitespaces as dot when in
+function! TrimWhiteSpace()
+    %s/\s\+$//e
+endfunction
+command TrimWhiteSpace :call TrimWhiteSpace()
+
+" show whitespaces as dot when in visual mode
 set lcs+=space:·
 
 " show whitespaces when in visual mode
