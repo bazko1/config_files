@@ -45,6 +45,7 @@ let g:vimtex_compiler_latexmk = {'options' : [
 let g:vimtex_quickfix_ignore_filters = ['Overfull', 'Underfull']
 let g:vimtex_grammar_vlty = {'lt_directory': '/home/bazyli/gitworkspace/LanguageTool-6.2-stable'}
 set spelllang=pl
+set spell
 
 " changing nerdtree root dir is changed vim cwd also
 let NERDTreeChDirMode = 2
