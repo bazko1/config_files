@@ -11,7 +11,6 @@ syntax on
 let mapleader = ','
 
 call plug#begin('~/.vim/plugged')
-
 Plug 'preservim/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'pineapplegiant/spaceduck', { 'branch': 'main' }
@@ -35,7 +34,7 @@ let g:airline#extensions#whitespace#mixed_indent_algo = 2
 " tabline configurations
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#show_buffers = 0
+" let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_close_button = 0
 
 " Golang related options
@@ -69,6 +68,9 @@ noremap <Leader>t :NERDTreeToggle<CR>
 nnoremap <Leader>e :GFiles <CR>
 nnoremap <Leader>a :Files <CR>
 nnoremap <Leader>h :History<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>l :bn<CR>
+nnoremap <Leader>h :bp<CR>
 nnoremap <silent> <Leader>s :AirlineToggle<CR>
 
 ca tn tabnew
