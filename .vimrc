@@ -8,7 +8,7 @@ set nowrap
 " make copy into * clipboard by default
 set clipboard=unnamedplus
 syntax on
-let mapleader = ','
+let mapleader = " "
 
 call plug#begin('~/.vim/plugged')
 Plug 'preservim/nerdtree'
@@ -67,10 +67,9 @@ map ; :
 noremap <Leader>t :NERDTreeToggle<CR>
 nnoremap <Leader>e :GFiles <CR>
 nnoremap <Leader>a :Files <CR>
-nnoremap <Leader>h :History<CR>
 nnoremap <Leader>b :Buffers<CR>
-nnoremap <Leader>l :bn<CR>
-nnoremap <Leader>h :bp<CR>
+nnoremap <silent> <Leader>l :bn<CR>
+nnoremap <silent> <Leader>h :bp<CR>
 nnoremap <silent> <Leader>s :AirlineToggle<CR>
 
 ca tn tabnew
@@ -133,7 +132,6 @@ function! ToggleHiddenAll()
         set laststatus=0
         set noshowcmd
         set showtabline=0
-        windo set nonumber
     else
         let s:hidden_all = 0
         set showmode
@@ -141,9 +139,12 @@ function! ToggleHiddenAll()
         set laststatus=2
         set showcmd
         set showtabline=2
-        windo set number
     endif
 endfunction
-
 command ToggleHiddenAll :call ToggleHiddenAll()
 
+let g:fzf_action = {
+  \ 'ctrl-q': 'wall | bdelete',
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
