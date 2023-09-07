@@ -31,6 +31,7 @@ call plug#end()
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#mixed_indent_algo = 2
+let g:airline#extensions#whitespace#checks = [ 'indent', 'trailing', 'long', 'conflicts' ]
 " tabline configurations
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
@@ -61,16 +62,18 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-" Use ; as :
-map ; :
+" Use ; as : not to need use shift
+noremap ; :
+noremap , ;
+noremap <Leader>, ,
 
 noremap <Leader>t :NERDTreeToggle<CR>
-nnoremap <Leader>e :GFiles <CR>
-nnoremap <Leader>a :Files <CR>
-nnoremap <Leader>b :Buffers<CR>
-nnoremap <silent> <Leader>l :bn<CR>
-nnoremap <silent> <Leader>h :bp<CR>
-nnoremap <silent> <Leader>s :AirlineToggle<CR>
+noremap <Leader>e :GFiles <CR>
+noremap <Leader>a :Files <CR>
+noremap <Leader>b :Buffers<CR>
+noremap <silent> <Leader>l :bn<CR>
+noremap <silent> <Leader>h :bp<CR>
+noremap <silent> <Leader>s :AirlineToggle<CR>
 
 ca tn tabnew
 ca th tabp

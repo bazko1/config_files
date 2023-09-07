@@ -359,7 +359,7 @@ schemes:
 
   Papercolor_light: &Papercolor_light
     primary:
-      background: '0xeeeeee'
+      background: '0xffffff'
       foreground: '0x444444'
     cursor:
       text:   '0xeeeeee'
@@ -367,7 +367,7 @@ schemes:
     normal:
       black:   '0xeeeeee'
       red:     '0xaf0000'
-      green:   '0x008700'
+      green:   '0xd70087'
       yellow:  '0x5f8700'
       blue:    '0x0087af'
       magenta: '0x878787'
@@ -472,6 +472,6 @@ schemes:
 # *Papercolor_light
 # *Atom_one_light
 
-colors: *Pencil_light
-# colors: *Papercolor_light
+# colors: *Pencil_light
+colors: *Papercolor_light
 # colors: *Atom_one_light
