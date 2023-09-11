@@ -2,7 +2,10 @@ window:
   startup_mode: Fullscreen
 
 shell:
-  program: tmux new -As0
+  program: tmux
+  args:
+    - new
+    - -As0
 
 font:
   size: 22
