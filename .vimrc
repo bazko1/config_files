@@ -74,6 +74,7 @@ noremap <Leader>b :Buffers<CR>
 noremap <silent> <Leader>l :bn<CR>
 noremap <silent> <Leader>h :bp<CR>
 noremap <silent> <Leader>s :AirlineToggle<CR>
+noremap <silent> <Leader>d :bdelete<CR>
 
 ca tn tabnew
 ca th tabp

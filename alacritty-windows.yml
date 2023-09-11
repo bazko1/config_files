@@ -367,7 +367,7 @@ schemes:
     normal:
       black:   '0xeeeeee'
       red:     '0xaf0000'
-      green:   '0xd70087'
+      green:   '0x5faf5f'
       yellow:  '0x5f8700'
       blue:    '0x0087af'
       magenta: '0x878787'
