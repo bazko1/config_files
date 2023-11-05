@@ -1,4 +1,27 @@
+-- Disable netrw
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
+
+-- enable 24-but rgb color in the TUI
 vim.opt.termguicolors = true
+
+-- packer plugins configuration
+-- Install packer if it's not already installed
+local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local packer_bootstrap = false
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+    packer_bootstrap = true
+    vim.fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+    vim.cmd([[packadd packer.nvim]])
+end
+
+require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim'
+  -- Automatically set up your configuration after cloning packer.nvim
+  if packer_bootstrap then
+    require('packer').sync()
+  end
+end)
 
 -- vim opts
 vim.g.mapleader = ' '
@@ -24,7 +47,6 @@ vim.opt.number = true
 vim.opt.clipboard = unnamedplus
 
 -- keymaps
-
 -- nohl on double esc
 vim.keymap.set({ 'n','v' },'<Esc><Esc>', ':let @/ = ""<CR>', { silent = true })
 -- use ; as : very convenient as not need to hold shift
