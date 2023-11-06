@@ -6,7 +6,10 @@ set shiftwidth=4
 set expandtab
 set nowrap
 " make copy into * clipboard by default
-set clipboard=unnamedplus
+set clipboard=unnamed
+set splitright
+set splitbelow
+set termguicolors
 syntax on
 let mapleader = " "
 
@@ -75,6 +78,9 @@ noremap <silent> <Leader>l :bn<CR>
 noremap <silent> <Leader>h :bp<CR>
 noremap <silent> <Leader>s :AirlineToggle<CR>
 noremap <silent> <Leader>d :bdelete<CR>
+" jump to next uppercase character
+noremap <silent> <Leader>w :<c-u>call search('\u')<CR>
+noremap <silent> <Leader>q :w \| bdelete<CR>
 
 ca tn tabnew
 ca th tabp
