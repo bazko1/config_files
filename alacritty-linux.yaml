@@ -458,8 +458,7 @@ schemes:
 # *Pencil_light
 # *Pencil_dark
 # *Papercolor_light
-# *Atom_one_light
 
 # colors: *Pencil_light
-colors: *Papercolor_light
-# colors: *Atom_one_light
+# colors: *Papercolor_light
+colors: *Catppuccin-Macchiato

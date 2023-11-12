@@ -51,7 +51,7 @@ let NERDTreeChDirMode = 2
 
 "colorscheme codedark
 colorscheme one
-set background=light
+set background=dark
 
 lua require('Comment').setup()
 augroup myvimrc
