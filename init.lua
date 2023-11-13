@@ -34,6 +34,7 @@ require("lazy").setup({
       })
       require('onedark').load()
       vim.cmd.colorscheme 'onedark'
+      vim.opt.background = 'dark'
     end
   },
 
@@ -101,6 +102,8 @@ require("lazy").setup({
             ["<C-j>"] = "move_selection_next",
             ["<C-k>"] = "move_selection_previous",
             ["<Esc><Esc>"] = "close",
+            ["<C-u>"] = false,
+            ["<C-d>"] = false,
           },
           n = {
             ["<Esc><Esc>"] = "close",
@@ -134,6 +137,20 @@ require("lazy").setup({
       },
     },
   },
+  {
+    "ray-x/go.nvim",
+    dependencies = {  -- optional packages
+    "ray-x/guihua.lua",
+    "neovim/nvim-lspconfig",
+    "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("go").setup()
+    end,
+    event = {"CmdlineEnter"},
+    ft = {"go", 'gomod'},
+    build = ':lua require("go.install").update_all_sync()'
+  }
 
 },{})
 
@@ -169,7 +186,10 @@ vim.opt.clipboard = {"unnamedplus", "unnamed"}
 vim.o.breakindent = true
 -- Save undo history
 vim.o.undofile = true
-
+-- show space as dot when list
+vim.opt.listchars:append({space = "·"})
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect'
 -- keymaps
 -- nohl on double esc
 vim.keymap.set({"n"},"<Esc><Esc>", ":let @/ = ''<CR>", { silent = true })
@@ -190,11 +210,13 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 pcall(require('telescope').load_extension, 'fzf')
 
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
+vim.keymap.set('n', '<leader>e', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>b', function()
   require('telescope.builtin').buffers {sort_lastused=true}
 end, { desc = 'Search [B]uffers' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch [G]rep' })
+vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch [W]ord' })
 
 -- lsp configuration
 
@@ -273,4 +295,84 @@ mason_lspconfig.setup_handlers {
       filetypes = (servers[server_name] or {}).filetypes,
     }
   end,
+}
+-- custom commands
+vim.api.nvim_create_user_command('TrimWhiteSpace',"%s/\\s\\+$//e", {})
+-- autocommands
+-- shows whitespaces when entering visual mode
+vim.api.nvim_create_autocmd("ModeChanged", {
+  pattern="*:[vV\x16]*",
+  callback = function()
+    vim.opt.list = true
+  end,
+})
+vim.api.nvim_create_autocmd("ModeChanged", {
+  pattern="[vV\x16]*:*",
+  callback = function()
+    vim.opt.list = false
+  end,
+})
+
+-- Run gofmt on save
+local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+   require('go.format').gofmt()
+  end,
+  group = format_sync_grp,
+})
+
+-- [[ Configure nvim-cmp ]]
+local cmp = require 'cmp'
+local luasnip = require 'luasnip'
+require('luasnip.loaders.from_vscode').lazy_load()
+luasnip.config.setup {}
+
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
+  completion = {
+    completeopt = 'menu,menuone,noinsert'
+  },
+  mapping = cmp.mapping.preset.insert {
+
+    ['<C-n>'] = cmp.mapping.select_next_item(),
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-Space>'] = cmp.mapping.complete {},
+
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_locally_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+
+        cmp.select_prev_item()
+      elseif luasnip.locally_jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
+  },
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+  },
 }
