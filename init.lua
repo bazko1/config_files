@@ -80,10 +80,12 @@ require("lazy").setup({
         section_separators = "",
       },
       sections = {
-        lualine_b = {'filename'},
-        lualine_c = {'branch'},
-        lualine_x = {'diagnostics'},
-        lualine_y = {},
+        lualine_b = {
+          {'filename', path = 1}
+        },
+        lualine_c = {},
+        lualine_x = {'branch'},
+        lualine_y = {'diagnostics'},
       },
     },
   },
