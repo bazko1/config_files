@@ -382,6 +382,7 @@ mason_lspconfig.setup_handlers {
 require("go").setup({capabilities = capabilities})
 -- custom commands
 vim.api.nvim_create_user_command('TrimWhiteSpace',"%s/\\s\\+$//e", {})
+
 -- autocommands
 -- shows whitespaces when entering visual mode
 vim.api.nvim_create_autocmd("ModeChanged", {
@@ -395,6 +396,12 @@ vim.api.nvim_create_autocmd("ModeChanged", {
   callback = function()
     vim.opt.list = false
   end,
+})
+
+--  associate yaml templates
+vim.api.nvim_create_autocmd({"BufNewFile","BufRead"}, {
+  pattern="*.yaml.tpl",
+  command="set filetype=yaml"
 })
 
 -- Run gofmt on save
