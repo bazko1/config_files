@@ -139,6 +139,7 @@ require("lazy").setup({
       },
     },
   },
+
   {
     "ray-x/go.nvim",
     dependencies = {  -- optional packages
@@ -146,13 +147,19 @@ require("lazy").setup({
     "neovim/nvim-lspconfig",
     "nvim-treesitter/nvim-treesitter",
     },
-    config = function()
-      require("go").setup()
-    end,
     event = {"CmdlineEnter"},
     ft = {"go", 'gomod'},
     build = ':lua require("go.install").update_all_sync()'
-  }
+  },
+
+  {
+    -- Highlight, edit, and navigate code
+    'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
+    build = ':TSUpdate',
+  },
 
 },{})
 
@@ -219,6 +226,80 @@ vim.keymap.set('n', '<leader>b', function()
 end, { desc = 'Search [B]uffers' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch [G]rep' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch [W]ord' })
+
+-- [[ Configure Treesitter ]]
+-- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
+vim.defer_fn(function()
+  require('nvim-treesitter.configs').setup {
+    -- Add languages to be installed here that you want installed for treesitter
+    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'yaml' },
+
+    -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
+    auto_install = false,
+
+    highlight = { enable = true },
+    indent = { enable = true },
+
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = '<c-space>',
+        node_incremental = '<c-space>',
+        scope_incremental = '<c-s>',
+
+        node_decremental = '<M-space>',
+      },
+    },
+    textobjects = {
+      select = {
+        enable = true,
+        lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
+        keymaps = {
+          -- You can use the capture groups defined in textobjects.scm
+          ['aa'] = '@parameter.outer',
+          ['ia'] = '@parameter.inner',
+          ['af'] = '@function.outer',
+          ['if'] = '@function.inner',
+          ['ac'] = '@class.outer',
+          ['ic'] = '@class.inner',
+        },
+      },
+      move = {
+        enable = true,
+        set_jumps = true, -- whether to set jumps in the jumplist
+        goto_next_start = {
+          [']m'] = '@function.outer',
+          [']]'] = '@class.outer',
+        },
+        goto_next_end = {
+
+          [']M'] = '@function.outer',
+          [']['] = '@class.outer',
+
+        },
+        goto_previous_start = {
+          ['[m'] = '@function.outer',
+          ['[['] = '@class.outer',
+        },
+
+        goto_previous_end = {
+          ['[M'] = '@function.outer',
+          ['[]'] = '@class.outer',
+        },
+      },
+      swap = {
+        enable = true,
+        swap_next = {
+          ['<leader>a'] = '@parameter.inner',
+        },
+        swap_previous = {
+          ['<leader>A'] = '@parameter.inner',
+        },
+      },
+    },
+  }
+
+end, 0)
 
 -- lsp configuration
 
@@ -298,6 +379,7 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
+require("go").setup({capabilities = capabilities})
 -- custom commands
 vim.api.nvim_create_user_command('TrimWhiteSpace',"%s/\\s\\+$//e", {})
 -- autocommands
@@ -316,7 +398,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 })
 
 -- Run gofmt on save
-local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()
