@@ -383,6 +383,10 @@ require("go").setup({capabilities = capabilities})
 -- custom commands
 vim.api.nvim_create_user_command('TrimWhiteSpace',"%s/\\s\\+$//e", {})
 
+-- grep string as command
+vim.api.nvim_create_user_command('Gs', function(opts)
+  require('telescope.builtin').grep_string({search=opts.args})
+end, {nargs=1})
 -- autocommands
 -- shows whitespaces when entering visual mode
 vim.api.nvim_create_autocmd("ModeChanged", {
