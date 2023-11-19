@@ -96,9 +96,6 @@ require("lazy").setup({
     'nvim-telescope/telescope.nvim', tag = '0.1.4',
     opts = {
       defaults = {
-        file_ignore_patterns = {
-          ".git"
-        },
         mappings = {
           i = {
             ["<C-j>"] = "move_selection_next",
