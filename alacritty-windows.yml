@@ -9,19 +9,19 @@ shell:
 
 font:
   normal:
-    family: Cascadia Mono PL
+    family: CaskaydiaCove Nerd Font Mono
     style: Regular
 
   bold:
-    family: Cascadia Mono PL
+    family: CaskaydiaCove Nerd Font Mono
     style: Bold
 
   italic:
-    family: Cascadia Mono PL
+    family: CaskaydiaCove Nerd Font Mono
     style: Italic
 
   bold_italic:
-    family: Cascadia Mono PL
+    family: CaskaydiaCove Nerd Font Mono
     style: Bold Ialic
   size: 22
 
@@ -470,8 +470,7 @@ schemes:
 # *Pencil_light
 # *Pencil_dark
 # *Papercolor_light
-# *Atom_one_light
 
 # colors: *Pencil_light
-colors: *Papercolor_light
-# colors: *Atom_one_light
+# colors: *Papercolor_light
+colors: *Catppuccin-Mocha
