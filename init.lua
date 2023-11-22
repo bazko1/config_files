@@ -1,6 +1,6 @@
 -- Disable netrw
--- vim.g.loaded_netrwPlugin = 1
--- vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
 
 
 vim.g.mapleader = " "
@@ -157,6 +157,15 @@ require("lazy").setup({
     },
     build = ':TSUpdate',
   },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    },
+}
 
 },{})
 
@@ -217,6 +226,7 @@ pcall(require('telescope').load_extension, 'fzf')
 
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 vim.keymap.set('n', '<leader>e', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
+vim.keymap.set('n', '<leader>of', function() require('telescope.builtin').oldfiles {only_cwd=true} end, { desc = 'Search [O]ld [F]files' })
 vim.keymap.set('n', '<leader>sf', function ()
   require('telescope.builtin').find_files{ find_command = {'rg', '--files', '--hidden', '-g', '!.git', '-u' }}
 end, { desc = '[S]earch [F]iles' })
@@ -388,6 +398,9 @@ vim.api.nvim_create_user_command('TrimWhiteSpace',"%s/\\s\\+$//e", {})
 
 -- grep string as command
 vim.api.nvim_create_user_command('Gs', function(opts)
+  require('telescope.builtin').grep_string({search=opts.args})
+end, {nargs=1})
+vim.api.nvim_create_user_command('Ag', function(opts)
   require('telescope.builtin').grep_string({search=opts.args})
 end, {nargs=1})
 -- autocommands
