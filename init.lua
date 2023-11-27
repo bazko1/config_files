@@ -102,7 +102,7 @@ require("lazy").setup({
             ["<C-k>"] = "move_selection_previous",
             ["<Esc><Esc>"] = "close",
             ["<C-u>"] = false,
-            ["<C-d>"] = false,
+            ['<C-d>'] = "delete_buffer",
           },
           n = {
             ["<Esc><Esc>"] = "close",
