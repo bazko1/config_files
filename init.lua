@@ -239,6 +239,8 @@ vim.keymap.set('n', '<leader>b', function()
 end, { desc = 'Search [B]uffers' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch [G]rep' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch [W]ord' })
+-- neotree maps
+vim.keymap.set('n', '<leader>t', function() require('neo-tree.command').execute{ toggle=true } end, { desc = '[T]oggle NeoTree' })
 
 -- [[ Configure Treesitter ]]
 -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
