@@ -113,16 +113,16 @@ require("lazy").setup({
         find_files = {
           hidden = true,
         },
-      },
-      live_grep = {
-        additional_args = function()
-          return { '--hidden', '--glob', '!**/.git/*' }
-        end
-      },
-      grep_string = {
-        additional_args = function()
-          return { '--hidden', '--glob', '!**/.git/*' }
-        end
+        live_grep = {
+          additional_args = function(_)
+            return { '--hidden', '--glob', '!**/.git/*' }
+          end
+        },
+        grep_string = {
+          additional_args = function(_)
+            return { '--hidden', '--glob', '!**/.git/*' }
+          end
+        },
       },
     },
     dependencies = {
@@ -165,6 +165,16 @@ require("lazy").setup({
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
     },
+    opts = {
+      filesystem = {
+        follow_current_file = {
+          enabled = true,
+        },
+        filtered_items = {
+          hide_dotfiles = false,
+        }
+      }
+    }
 }
 
 },{})
