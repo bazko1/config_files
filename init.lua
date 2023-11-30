@@ -248,7 +248,7 @@ vim.keymap.set('n', '<leader>b', function()
 end, { desc = 'Search [B]uffers' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch [G]rep' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch [W]ord' })
-vim.keymap.set('n', '<leader>r', require('telescope.builtin').resume, { desc = '[R]esume previous picker' })
+vim.keymap.set('n', '<leader>rs', require('telescope.builtin').resume, { desc = '[R]esume [S]earch for previous picker' })
 -- neotree maps
 vim.keymap.set('n', '<leader>t', function() require('neo-tree.command').execute{ toggle=true } end, { desc = '[T]oggle NeoTree' })
 
