@@ -237,18 +237,18 @@ pcall(require('telescope').load_extension, 'fzf')
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 vim.keymap.set('n', '<leader>e', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 vim.keymap.set('n', '<leader>of', function() require('telescope.builtin').oldfiles {only_cwd=true} end, { desc = 'Search [O]ld [F]files' })
-vim.keymap.set('n', '<leader>sf', function ()
+local search_fn = function ()
   require('telescope.builtin').find_files{ find_command = {'rg', '--files', '--hidden', '-g', '!.git', '-u' }}
-end, { desc = '[S]earch [F]iles' })
-vim.keymap.set('n', '<leader>f', function ()
-  require('telescope.builtin').find_files{ find_command = {'rg', '--files', '--hidden', '-g', '!.git', '-u' }}
-end, { desc = '[S]earch [F]iles' })
+end
+vim.keymap.set('n', '<leader>sf', search_fn, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>f', search_fn, { desc = '[S]earch [F]iles' })
 
 vim.keymap.set('n', '<leader>b', function()
   require('telescope.builtin').buffers {sort_lastused=true}
 end, { desc = 'Search [B]uffers' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch [G]rep' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch [W]ord' })
+vim.keymap.set('n', '<leader>r', require('telescope.builtin').resume, { desc = '[R]esume previous picker' })
 -- neotree maps
 vim.keymap.set('n', '<leader>t', function() require('neo-tree.command').execute{ toggle=true } end, { desc = '[T]oggle NeoTree' })
 
