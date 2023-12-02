@@ -166,6 +166,7 @@ require("lazy").setup({
       "MunifTanjim/nui.nvim",
     },
     opts = {
+      enable_git_status = false,
       filesystem = {
         follow_current_file = {
           enabled = true,
