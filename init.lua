@@ -226,10 +226,17 @@ vim.keymap.set({"n","v","o"}, ",", ";")
 -- repeat back f, t command is set to leader + ,
 vim.keymap.set({"n","v","o"}, "<Leader>,", ",")
 
+-- command mode abbreviations
+-- FIXME: migrate to this when version 0.10 released
+-- vim.keymap.set("ca", "tn", "tabnew")
+vim.cmd("ca tn tabnew")
+
+--terminal mode exit
+vim.keymap.set("t", "<C-space>", "<C-\\><C-n>", {silent=true})
 -- diagnostics keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>of', vim.diagnostic.open_float, { desc = 'Open [F]loating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- telescope configuration
