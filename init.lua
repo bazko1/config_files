@@ -236,8 +236,9 @@ vim.keymap.set("t", "<C-space>", "<C-\\><C-n>", {silent=true})
 -- diagnostics keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>of', vim.diagnostic.open_float, { desc = 'Open [F]loating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+vim.keymap.set('n', ']o', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+vim.keymap.set('n', '<leader>q', require('telescope.builtin').diagnostics, { desc = '[S]earch workspace [d]iagnostics' })
 
 -- telescope configuration
 pcall(require('telescope').load_extension, 'fzf')
