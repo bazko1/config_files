@@ -2,3 +2,7 @@
 	editor = nvim
 [alias]
 	st = status -uno
+[alias]
+	curr = branch --show-current
+[diff]
+	tool = nvimdiff

@@ -168,6 +168,7 @@ require("lazy").setup({
     opts = {
       enable_git_status = false,
       filesystem = {
+        hijack_netrw_behavior = "open_current",
         follow_current_file = {
           enabled = true,
         },
@@ -225,6 +226,7 @@ vim.keymap.set({"n","v","o"}, ";", ":")
 vim.keymap.set({"n","v","o"}, ",", ";")
 -- repeat back f, t command is set to leader + ,
 vim.keymap.set({"n","v","o"}, "<Leader>,", ",")
+vim.opt.splitright = true
 
 -- command mode abbreviations
 -- FIXME: migrate to this when version 0.10 released
@@ -338,18 +340,20 @@ end, 0)
 -- lsp configuration
 
 local on_attach = function(_, bufnr)
-  local nmap = function(keys, func, desc)
+  local nmap = function(keys, func, desc, silent)
     if desc then
       desc = 'LSP: ' .. desc
     end
 
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc, silent = silent})
   end
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
+  nmap('gD',  ":vs | lua require('telescope.builtin').lsp_definitions()<CR>", '[G]oto [D]efinition', true)
+  -- nmap('gds', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
   nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
@@ -361,7 +365,7 @@ local on_attach = function(_, bufnr)
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+  -- nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
   nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
   nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
   nmap('<leader>wl', function()
@@ -417,6 +421,9 @@ require("go").setup({capabilities = capabilities})
 -- custom commands
 vim.api.nvim_create_user_command('TrimWhiteSpace',"%s/\\s\\+$//e", {})
 
+-- TODO: Create function to call command and put results into QuickFix list
+--vim.api.nvim_create_user_command('QFixCall',":cgetexpr system($1)", {})
+
 -- grep string as command
 vim.api.nvim_create_user_command('Gs', function(opts)
   require('telescope.builtin').grep_string({search=opts.args})
@@ -430,12 +437,14 @@ vim.api.nvim_create_autocmd("ModeChanged", {
   pattern="*:[vV\x16]*",
   callback = function()
     vim.opt.list = true
+    -- vim.opt.relativenumber = true
   end,
 })
 vim.api.nvim_create_autocmd("ModeChanged", {
   pattern="[vV\x16]*:*",
   callback = function()
     vim.opt.list = false
+    -- vim.opt.relativenumber = false
   end,
 })
 
