@@ -29,6 +29,11 @@ custom_cursor_colors: true
 key_bindings:
   - { key: F11, mods: None, action: ToggleFullscreen}
 
+mouse_binding:
+  - { mouse: Middle, action: PasteSelection }
+mouse:
+  hide_when_typing: true 
+
 schemes:
   ### Catppuccin-Mocha ##
   Catppuccin-Mocha: &Catppuccin-Mocha
