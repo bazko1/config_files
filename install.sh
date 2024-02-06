@@ -5,7 +5,6 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 # User definable variables
 INSTALL_DIR="${INSTALL_DIR:-$HOME}"
 FORCE="${FORCE:-false}"
-
 echo "Installing configuration to $INSTALL_DIR"
 
 createLink ()
@@ -26,4 +25,9 @@ createLink "init.lua" ".config/nvim"
 if ! [ -f "/etc/wsl.conf" ]; then
   mkdir -p "${INSTALL_DIR}/.config/alacritty"
   createLink "alacritty-linux.yml" ".config/alacritty/alacritty.yml"
+else
+  # FIXME: This should be taken via cmd.exe but need to fix some decoding issues.
+  WIN_USER="${WIN_USER:-bazyli}"
+  # links does not work cross platform so we just make copy
+  cp "alacritty-windows.yml" "/mnt/c/Users/${WIN_USER}/AppData/Roaming/alacritty/alacritty.yml"
 fi
