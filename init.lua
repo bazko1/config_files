@@ -210,12 +210,15 @@ vim.opt.spell = false
 -- make copy into * clipboard by default
 vim.opt.clipboard = {"unnamedplus", "unnamed"}
 
-vim.g.clipboard = {
-    name = 'tmux clipboard',
-    copy =  { ["+"] = { "tmux", "load-buffer", "-" },   ["*"] = { "tmux", "load-buffer", "-" } },
-    paste = { ["+"] = { "tmux", "save-buffer",  "-" },   ["*"] = { "tmux", "load-buffer", "-" } },
-    cache_enabled = true
-}
+if os.getenv('TMUX') and not os.getenv('WSLENV')
+then
+  vim.g.clipboard = {
+      name = 'tmux clipboard',
+      copy =  { ["+"] = { "tmux", "load-buffer", "-" },   ["*"] = { "tmux", "load-buffer", "-" } },
+      paste = { ["+"] = { "tmux", "save-buffer",  "-" },   ["*"] = { "tmux", "load-buffer", "-" } },
+      cache_enabled = true
+  }
+end
 -- Enable break indent
 vim.o.breakindent = true
 -- Save undo history
