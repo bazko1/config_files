@@ -17,7 +17,14 @@ createLink ()
 createLink ".gitconfig" ".gitconfig"
 createLink ".inputrc" ".inputrc"
 createLink ".tmux.conf" ".tmux.conf"
-createLink ".bash_aliases" ".bash_aliases"
+
+. /etc/os-release
+if [ "$ID" == "rhel" ]; then
+  mkdir -p "${INSTALL_DIR}/.bashrc.d"
+  createLink ".bash_aliases" ".bashrc.d/bash_aliases"
+else
+  createLink ".bash_aliases" ".bash_aliases"
+fi
 
 mkdir -p "${INSTALL_DIR}/.config/nvim"
 createLink "init.lua" ".config/nvim"
