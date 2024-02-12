@@ -2,7 +2,6 @@
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
 
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -182,7 +181,6 @@ require("lazy").setup({
 },{})
 
 -- vim opts
-
 -- tabs & indentation
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -225,6 +223,8 @@ vim.o.breakindent = true
 vim.o.undofile = true
 -- show space as dot when list
 vim.opt.listchars:append({space = "·"})
+-- show whitespaces with error msg
+vim.fn.matchadd('errorMsg', [[\s\+$]])
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 -- keymaps
@@ -368,6 +368,7 @@ local on_attach = function(_, bufnr)
   nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
   nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+  nmap('<leader>ss', require('telescope.builtin').lsp_document_symbols, '[S]earch [S]ymbols')
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   -- See `:help K` for why this keymap
@@ -447,14 +448,14 @@ vim.api.nvim_create_autocmd("ModeChanged", {
   pattern="*:[vV\x16]*",
   callback = function()
     vim.opt.list = true
-    -- vim.opt.relativenumber = true
+    vim.opt.relativenumber = true
   end,
 })
 vim.api.nvim_create_autocmd("ModeChanged", {
   pattern="[vV\x16]*:*",
   callback = function()
     vim.opt.list = false
-    -- vim.opt.relativenumber = false
+    vim.opt.relativenumber = false
   end,
 })
 

@@ -2,7 +2,16 @@
 	editor = nvim
 [alias]
 	st = status -uno
-[alias]
 	curr = branch --show-current
+	br = branch
+	lc = "!fn() { \
+		git log -\"$1\" --oneline \
+		--cherry-mark --left-right \
+		\"$2\"; \
+		}; fn"
 [diff]
 	tool = nvimdiff
+[branch]
+	sort -committerdate
+[column]
+	ui = auto
