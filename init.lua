@@ -20,7 +20,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-   -- Detect tabstop and shiftwidth automatically
+  -- Detect tabstop and shiftwidth automatically
   'tpope/vim-sleuth',
 
   -- Theme
@@ -28,7 +28,7 @@ require("lazy").setup({
     "navarasu/onedark.nvim",
     priority = 1000,
     config = function()
-     require('onedark').setup({
+      require('onedark').setup({
         style = 'darker'
       })
       require('onedark').load()
@@ -139,9 +139,9 @@ require("lazy").setup({
   {
     "ray-x/go.nvim",
     dependencies = {  -- optional packages
-    "ray-x/guihua.lua",
-    "neovim/nvim-lspconfig",
-    "nvim-treesitter/nvim-treesitter",
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
     },
     event = {"CmdlineEnter"},
     ft = {"go", 'gomod'},
@@ -176,7 +176,8 @@ require("lazy").setup({
         }
       }
     }
-}
+  },
+  {"szw/vim-maximizer"}
 
 },{})
 
@@ -230,6 +231,9 @@ vim.o.completeopt = 'menuone,noselect'
 -- keymaps
 -- nohl on double esc
 vim.keymap.set({"n"},"<Esc><Esc>", ":let @/ = ''<CR>", { silent = true })
+-- scrolling through text
+vim.keymap.set({"n"},"<C-u>", "<C-u>zz")
+vim.keymap.set({"n"},"<C-d>", "<C-d>zz")
 -- use ; as : very convenient as not need to hold shift
 vim.keymap.set({"n","v","o"}, ";", ":")
 -- instead the repeat f, t command is set to ,
@@ -237,7 +241,7 @@ vim.keymap.set({"n","v","o"}, ",", ";")
 -- repeat back f, t command is set to leader + ,
 vim.keymap.set({"n","v","o"}, "<Leader>,", ",")
 vim.opt.splitright = true
-
+vim.keymap.set('n', '<leader>m', ':MaximizerToggle<CR>', { silent = true })
 -- command mode abbreviations
 -- FIXME: migrate to this when version 0.10 released
 -- vim.keymap.set("ca", "tn", "tabnew")
