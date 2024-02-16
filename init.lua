@@ -208,6 +208,8 @@ vim.opt.swapfile = false
 vim.opt.spell = false
 -- make copy into * clipboard by default
 vim.opt.clipboard = {"unnamedplus", "unnamed"}
+-- ctrl-a/x incr decr alphabet letters
+vim.opt.nrformats:append("alpha")
 
 if os.getenv('TMUX') and not os.getenv('WSLENV')
 then
