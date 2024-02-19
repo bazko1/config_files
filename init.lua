@@ -413,6 +413,9 @@ local servers = {
   },
 }
 
+-- Setup neovim lua configuration
+require('neodev').setup()
+
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
 
