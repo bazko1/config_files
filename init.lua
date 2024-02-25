@@ -211,15 +211,15 @@ vim.opt.clipboard = {"unnamedplus", "unnamed"}
 -- ctrl-a/x incr decr alphabet letters
 vim.opt.nrformats:append("alpha")
 
-if os.getenv('TMUX') and not os.getenv('WSLENV')
-then
-  vim.g.clipboard = {
-      name = 'tmux clipboard',
-      copy =  { ["+"] = { "tmux", "load-buffer", "-" },   ["*"] = { "tmux", "load-buffer", "-" } },
-      paste = { ["+"] = { "tmux", "save-buffer",  "-" },   ["*"] = { "tmux", "load-buffer", "-" } },
-      cache_enabled = true
-  }
-end
+-- if os.getenv('TMUX') and not os.getenv('WSLENV')
+-- then
+--   vim.g.clipboard = {
+--       name = 'tmux clipboard',
+--       copy =  { ["+"] = { "tmux", "load-buffer", "-" },   ["*"] = { "tmux", "load-buffer", "-" } },
+--       paste = { ["+"] = { "tmux", "save-buffer",  "-" },   ["*"] = { "tmux", "load-buffer", "-" } },
+--       cache_enabled = true
+--   }
+-- end
 -- Enable break indent
 vim.o.breakindent = true
 -- Save undo history
@@ -438,9 +438,14 @@ mason_lspconfig.setup_handlers {
   end,
 }
 require("go").setup({capabilities = capabilities})
+
 -- custom commands
 vim.api.nvim_create_user_command('TrimWhiteSpace',"%s/\\s\\+$//e", {})
 
+-- call live_grep over specific filetypes
+vim.api.nvim_create_user_command('LiveGrepType', function(opts)
+  require('telescope.builtin').live_grep({type_filter=opts.args})
+end, {nargs=1})
 -- TODO: Create function to call command and put results into QuickFix list
 --vim.api.nvim_create_user_command('QFixCall',":cgetexpr system($1)", {})
 
