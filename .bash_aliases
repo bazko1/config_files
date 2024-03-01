@@ -26,3 +26,7 @@ if [ -f "/etc/wsl.conf" ]; then
 else
   export ALACRITTY_CONFIG=~/.config/alacritty/alacritty.yml
 fi
+
+export PATH="$PATH:/opt/nvim-linux64/bin"
+export EDITOR=vim
+export VISUAL=vim

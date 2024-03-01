@@ -12,6 +12,8 @@
 [diff]
 	tool = nvimdiff
 [branch]
-	sort -committerdate
+	sort = committerdate
 [column]
 	ui = auto
+[user]
+	name = bazko1
