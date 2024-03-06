@@ -1,9 +1,13 @@
 [core]
 	editor = nvim
 [alias]
+	a = add
+	s = status
 	st = status -uno
+	c = commit
+	l = log
+	b = branch
 	curr = branch --show-current
-	br = branch
 	lc = "!fn() { \
 		git log -\"$1\" --oneline \
 		--cherry-mark --left-right \
