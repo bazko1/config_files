@@ -411,6 +411,7 @@ local servers = {
       }
     },
   },
+  golangci_lint_ls = {},
 }
 
 -- Setup neovim lua configuration
@@ -437,7 +438,15 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
-require("go").setup({capabilities = capabilities})
+
+local ok, path =  pcall(require, 'nvim-lsp-installer.path')
+local gopls_cmd
+if ok then
+  local install_root_dir = path.concat { vim.fn.stdpath 'data', 'lsp_servers' }
+  gopls_cmd = { install_root_dir .. '/go/gopls' }
+end
+require("go").setup({ lsp_codelens = false,
+                      gopls_cmd = gopls_cmd,})
 
 -- custom commands
 vim.api.nvim_create_user_command('TrimWhiteSpace',"%s/\\s\\+$//e", {})
@@ -484,7 +493,7 @@ local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*.go",
   callback = function()
-   require('go.format').goimport() -- goimport + gofmt
+    require('go.format').goimport() -- goimport + gofmt
   end,
   group = format_sync_grp,
 })
