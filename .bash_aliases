@@ -18,6 +18,8 @@ alias docker_rm_stoped='docker rm $(docker ps -a -q)'
 alias shortps="PS1='\[\033[01;34m\]\W\[\033[00m\]\$ '"
 alias start_nemo='nemo . 2>/dev/null &'
 alias vim=nvim
+alias watch_go_lint='watchexec -e go -- golangci-lint run .'
+alias watch_go_test='watchexec -e go -- go test ./...'
 
 # exports
 if [ -f "/etc/wsl.conf" ]; then
@@ -27,6 +29,6 @@ else
   export ALACRITTY_CONFIG=~/.config/alacritty/alacritty.yml
 fi
 
-export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH="$PATH:/opt/nvim-linux64/bin:/usr/local/go/bin:$HOME/go/bin"
 export EDITOR=vim
 export VISUAL=vim
