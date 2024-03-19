@@ -177,7 +177,11 @@ require("lazy").setup({
   },
   {"szw/vim-maximizer"},
   {"benfowler/telescope-luasnip.nvim"},
-
+  {"f-person/git-blame.nvim",
+    opts = {
+      enabled = false,
+    }
+  }
 },{})
 
 -- vim opts
