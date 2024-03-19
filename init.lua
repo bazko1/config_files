@@ -64,8 +64,6 @@ require("lazy").setup({
       -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
 
-      -- Adds a number of user-friendly snippets
-      'rafamadriz/friendly-snippets',
     },
   },
 
@@ -177,7 +175,8 @@ require("lazy").setup({
       }
     }
   },
-  {"szw/vim-maximizer"}
+  {"szw/vim-maximizer"},
+  {"benfowler/telescope-luasnip.nvim"},
 
 },{})
 
@@ -260,6 +259,7 @@ vim.keymap.set('n', '<leader>q', require('telescope.builtin').diagnostics, { des
 
 -- telescope configuration
 pcall(require('telescope').load_extension, 'fzf')
+pcall(require('telescope').load_extension 'luasnip')
 
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 vim.keymap.set('n', '<leader>e', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
@@ -445,8 +445,10 @@ if ok then
   local install_root_dir = path.concat { vim.fn.stdpath 'data', 'lsp_servers' }
   gopls_cmd = { install_root_dir .. '/go/gopls' }
 end
-require("go").setup({ lsp_codelens = false,
-                      gopls_cmd = gopls_cmd,})
+
+require("go").setup({lsp_codelens = false,
+                     gopls_cmd = gopls_cmd,
+                     luasnip = true, })
 
 -- custom commands
 vim.api.nvim_create_user_command('TrimWhiteSpace',"%s/\\s\\+$//e", {})
