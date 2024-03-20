@@ -2,11 +2,12 @@
 	editor = nvim
 [alias]
 	a = add
+	b = branch
+	c = commit
+	d = diff
+	l = log
 	s = status
 	st = status -uno
-	c = commit
-	l = log
-	b = branch
 	curr = branch --show-current
 	lc = "!fn() { \
 		git log -\"$1\" --oneline \
