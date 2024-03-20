@@ -213,6 +213,8 @@ vim.opt.spell = false
 vim.opt.clipboard = {"unnamedplus", "unnamed"}
 -- ctrl-a/x incr decr alphabet letters
 vim.opt.nrformats:append("alpha")
+-- Don't show the mode, since it's already in the status line
+vim.opt.showmode = false
 
 -- if os.getenv('TMUX') and not os.getenv('WSLENV')
 -- then
