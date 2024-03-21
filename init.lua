@@ -506,6 +506,17 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = format_sync_grp,
 })
 
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank({timeout=600, on_visual=false})
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
+--
 -- [[ Configure nvim-cmp ]]
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
