@@ -6,6 +6,7 @@
 	c = commit
 	d = diff
 	l = log
+	p = push
 	s = status
 	st = status -uno
 	curr = branch --show-current
