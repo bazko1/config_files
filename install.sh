@@ -14,6 +14,9 @@ createLink ()
   ln "$args" "${SCRIPT_DIR}/$1" "${INSTALL_DIR}/$2"
 }
 
+// TODO: .gitconfig tends to have system specific configurations
+// link this as file with another name and utilize [include] in
+// actual .gitconfig
 createLink ".gitconfig" ".gitconfig"
 createLink ".inputrc" ".inputrc"
 createLink ".tmux.conf" ".tmux.conf"
