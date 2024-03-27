@@ -261,8 +261,8 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', ']o', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
-vim.keymap.set('n', '<leader>qf', require('telescope.builtin').quickfix,  { desc = 'Open [Quick][F]ix list' })
-vim.keymap.set('n', '<leader>q', require('telescope.builtin').diagnostics, { desc = '[S]earch workspace [d]iagnostics' })
+vim.keymap.set('n', '<leader>sq', require('telescope.builtin').quickfix,  { desc = '[S]earch [Q]uickfix list' })
+vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch workspace [d]iagnostics' })
 
 -- telescope configuration
 pcall(require('telescope').load_extension, 'fzf')
@@ -467,7 +467,7 @@ vim.api.nvim_create_user_command('LiveGrepType', function(opts)
 end, {nargs=1})
 
 -- I seem to have difficulty remembering :copen command
-vim.api.nvim_create_user_command('',"%s/\\s\\+$//e", {})
+vim.api.nvim_create_user_command('QuickFix',":copen", {})
 
 -- TODO: Create function to call command and put results into QuickFix list
 --vim.api.nvim_create_user_command('QFixCall',":cgetexpr system($1)", {})
