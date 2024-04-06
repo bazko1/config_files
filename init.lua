@@ -46,10 +46,10 @@ require("lazy").setup({
       'williamboman/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
-      {'j-hui/fidget.nvim', tag = 'legacy', opts = {}},
+      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
-      {'folke/neodev.nvim', opts = {}}
+      { 'folke/neodev.nvim', opts = {} }
     },
   },
 
@@ -78,19 +78,20 @@ require("lazy").setup({
       },
       sections = {
         lualine_b = {
-          {'filename', path = 1}
+          { 'filename', path = 1 }
         },
         lualine_c = {},
-        lualine_x = {'branch'},
-        lualine_y = {'diagnostics'},
+        lualine_x = { 'branch' },
+        lualine_y = { 'diagnostics' },
       },
     },
   },
 
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim',           opts = {} },
 
   {
-    'nvim-telescope/telescope.nvim', tag = '0.1.4',
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.4',
     opts = {
       defaults = {
         mappings = {
@@ -136,13 +137,13 @@ require("lazy").setup({
 
   {
     "ray-x/go.nvim",
-    dependencies = {  -- optional packages
+    dependencies = { -- optional packages
       "ray-x/guihua.lua",
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
     },
-    event = {"CmdlineEnter"},
-    ft = {"go", 'gomod'},
+    event = { "CmdlineEnter" },
+    ft = { "go", 'gomod' },
     build = ':lua require("go.install").update_all_sync()'
   },
 
@@ -175,14 +176,15 @@ require("lazy").setup({
       }
     }
   },
-  {"szw/vim-maximizer"},
-  {"benfowler/telescope-luasnip.nvim"},
-  {"f-person/git-blame.nvim",
+  { "szw/vim-maximizer" },
+  { "benfowler/telescope-luasnip.nvim" },
+  {
+    "f-person/git-blame.nvim",
     opts = {
       enabled = false,
     }
   }
-},{})
+}, {})
 
 -- vim opts
 -- tabs & indentation
@@ -210,7 +212,7 @@ vim.opt.swapfile = false
 -- spellcheck disable
 vim.opt.spell = false
 -- make copy into * clipboard by default
-vim.opt.clipboard = {"unnamedplus", "unnamed"}
+vim.opt.clipboard = { "unnamedplus", "unnamed" }
 -- ctrl-a/x incr decr alphabet letters
 vim.opt.nrformats:append("alpha")
 -- Don't show the mode, since it's already in the status line
@@ -230,23 +232,23 @@ vim.o.breakindent = true
 -- Save undo history
 vim.o.undofile = true
 -- show space as dot when list
-vim.opt.listchars:append({space = "·"})
+vim.opt.listchars:append({ space = "·" })
 -- show whitespaces with error msg
 vim.fn.matchadd('errorMsg', [[\s\+$]])
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 -- keymaps
 -- nohl on double esc
-vim.keymap.set({"n"},"<Esc><Esc>", ":let @/ = ''<CR>", { silent = true })
+vim.keymap.set({ "n" }, "<Esc><Esc>", ":let @/ = ''<CR>", { silent = true })
 -- scrolling through text
-vim.keymap.set({"n"},"<C-u>", "<C-u>zz")
-vim.keymap.set({"n"},"<C-d>", "<C-d>zz")
+vim.keymap.set({ "n" }, "<C-u>", "<C-u>zz")
+vim.keymap.set({ "n" }, "<C-d>", "<C-d>zz")
 -- use ; as : very convenient as not need to hold shift
-vim.keymap.set({"n","v","o"}, ";", ":")
+vim.keymap.set({ "n", "v", "o" }, ";", ":")
 -- instead the repeat f, t command is set to ,
-vim.keymap.set({"n","v","o"}, ",", ";")
+vim.keymap.set({ "n", "v", "o" }, ",", ";")
 -- repeat back f, t command is set to leader + ,
-vim.keymap.set({"n","v","o"}, "<Leader>,", ",")
+vim.keymap.set({ "n", "v", "o" }, "<Leader>,", ",")
 vim.opt.splitright = true
 vim.keymap.set('n', '<leader>m', ':MaximizerToggle<CR>', { silent = true })
 -- command mode abbreviations
@@ -255,13 +257,13 @@ vim.keymap.set('n', '<leader>m', ':MaximizerToggle<CR>', { silent = true })
 vim.cmd("ca tn tabnew")
 
 --terminal mode exit
-vim.keymap.set("t", "<C-space>", "<C-\\><C-n>", {silent=true})
+vim.keymap.set("t", "<C-space>", "<C-\\><C-n>", { silent = true })
 -- diagnostics keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', ']o', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
-vim.keymap.set('n', '<leader>sq', require('telescope.builtin').quickfix,  { desc = '[S]earch [Q]uickfix list' })
+vim.keymap.set('n', '<leader>sq', require('telescope.builtin').quickfix, { desc = '[S]earch [Q]uickfix list' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch workspace [d]iagnostics' })
 
 -- telescope configuration
@@ -270,22 +272,24 @@ pcall(require('telescope').load_extension 'luasnip')
 
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 vim.keymap.set('n', '<leader>e', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>of', function() require('telescope.builtin').oldfiles {only_cwd=true} end, { desc = 'Search [O]ld [F]files' })
-local search_fn = function ()
-  require('telescope.builtin').find_files{ find_command = {'rg', '--files', '--hidden', '-g', '!.git', '-u' }}
+vim.keymap.set('n', '<leader>of', function() require('telescope.builtin').oldfiles { only_cwd = true } end,
+  { desc = 'Search [O]ld [F]files' })
+local search_fn = function()
+  require('telescope.builtin').find_files { find_command = { 'rg', '--files', '--hidden', '-g', '!.git', '-u' } }
 end
 vim.keymap.set('n', '<leader>sf', search_fn, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>f', search_fn, { desc = '[S]earch [F]iles' })
 
 vim.keymap.set('n', '<leader>b', function()
-  require('telescope.builtin').buffers {sort_lastused=true}
+  require('telescope.builtin').buffers { sort_lastused = true }
 end, { desc = 'Search [B]uffers' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch [G]rep' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch [W]ord' })
 vim.keymap.set('n', '<leader>rs', require('telescope.builtin').resume, { desc = '[R]esume [S]earch for previous picker' })
 vim.keymap.set('n', '<leader>re', require('telescope.builtin').registers, { desc = '[R][e]gister' })
 -- neotree maps
-vim.keymap.set('n', '<leader>t', function() require('neo-tree.command').execute{ toggle=true, position='right'} end, { desc = '[T]oggle NeoTree' })
+vim.keymap.set('n', '<leader>t', function() require('neo-tree.command').execute { toggle = true, position = 'right' } end,
+  { desc = '[T]oggle NeoTree' })
 
 -- [[ Configure Treesitter ]]
 -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
@@ -358,7 +362,6 @@ vim.defer_fn(function()
       },
     },
   }
-
 end, 0)
 
 -- lsp configuration
@@ -369,14 +372,14 @@ local on_attach = function(_, bufnr)
       desc = 'LSP: ' .. desc
     end
 
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc, silent = silent})
+    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc, silent = silent })
   end
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-  nmap('gD',  ":vs | lua require('telescope.builtin').lsp_definitions()<CR>", '[G]oto [D]efinition', true)
+  nmap('gD', ":vs | lua require('telescope.builtin').lsp_definitions()<CR>", '[G]oto [D]efinition', true)
   -- nmap('gds', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
@@ -415,7 +418,7 @@ local servers = {
       telemetry = { enable = false },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
-        globals = {'vim'},
+        globals = { 'vim' },
       }
     },
   },
@@ -447,49 +450,51 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
-local ok, path =  pcall(require, 'nvim-lsp-installer.path')
+local ok, path = pcall(require, 'nvim-lsp-installer.path')
 local gopls_cmd
 if ok then
   local install_root_dir = path.concat { vim.fn.stdpath 'data', 'lsp_servers' }
   gopls_cmd = { install_root_dir .. '/go/gopls' }
 end
 
-require("go").setup({lsp_codelens = false,
-                     gopls_cmd = gopls_cmd,
-                     luasnip = true, })
+require("go").setup({
+  lsp_codelens = false,
+  gopls_cmd = gopls_cmd,
+  luasnip = true,
+})
 
 -- custom commands
-vim.api.nvim_create_user_command('TrimWhiteSpace',"%s/\\s\\+$//e", {})
+vim.api.nvim_create_user_command('TrimWhiteSpace', "%s/\\s\\+$//e", {})
 
 -- call live_grep over specific filetypes
 vim.api.nvim_create_user_command('LiveGrepType', function(opts)
-  require('telescope.builtin').live_grep({type_filter=opts.args})
-end, {nargs=1})
+  require('telescope.builtin').live_grep({ type_filter = opts.args })
+end, { nargs = 1 })
 
 -- I seem to have difficulty remembering :copen command
-vim.api.nvim_create_user_command('QuickFix',":copen", {})
+vim.api.nvim_create_user_command('QuickFix', ":copen", {})
 
 -- TODO: Create function to call command and put results into QuickFix list
 --vim.api.nvim_create_user_command('QFixCall',":cgetexpr system($1)", {})
 
 -- grep string as command
 vim.api.nvim_create_user_command('Gs', function(opts)
-  require('telescope.builtin').grep_string({search=opts.args})
-end, {nargs=1})
+  require('telescope.builtin').grep_string({ search = opts.args })
+end, { nargs = 1 })
 vim.api.nvim_create_user_command('Ag', function(opts)
-  require('telescope.builtin').grep_string({search=opts.args})
-end, {nargs=1})
+  require('telescope.builtin').grep_string({ search = opts.args })
+end, { nargs = 1 })
 -- autocommands
 -- shows whitespaces when entering visual mode
 vim.api.nvim_create_autocmd("ModeChanged", {
-  pattern="*:[vV\x16]*",
+  pattern = "*:[vV\x16]*",
   callback = function()
     vim.opt.list = true
     vim.opt.relativenumber = true
   end,
 })
 vim.api.nvim_create_autocmd("ModeChanged", {
-  pattern="[vV\x16]*:*",
+  pattern = "[vV\x16]*:*",
   callback = function()
     vim.opt.list = false
     vim.opt.relativenumber = false
@@ -497,9 +502,9 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 })
 
 --  associate yaml templates
-vim.api.nvim_create_autocmd({"BufNewFile","BufRead"}, {
-  pattern="*.yaml.tpl",
-  command="set filetype=yaml"
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*.yaml.tpl",
+  command = "set filetype=yaml"
 })
 
 -- Run gofmt on save
@@ -517,7 +522,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
-    vim.highlight.on_yank({timeout=600, on_visual=false})
+    vim.highlight.on_yank({ timeout = 600, on_visual = false })
   end,
   group = highlight_group,
   pattern = '*',
@@ -562,7 +567,6 @@ cmp.setup {
     end, { 'i', 's' }),
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
-
         cmp.select_prev_item()
       elseif luasnip.locally_jumpable(-1) then
         luasnip.jump(-1)
