@@ -46,7 +46,7 @@ require("lazy").setup({
       'williamboman/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
-      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing!
       { 'folke/neodev.nvim', opts = {} }
@@ -251,6 +251,7 @@ vim.keymap.set({ "n", "v", "o" }, ",", ";")
 vim.keymap.set({ "n", "v", "o" }, "<Leader>,", ",")
 vim.opt.splitright = true
 vim.keymap.set('n', '<leader>m', ':MaximizerToggle<CR>', { silent = true })
+vim.keymap.set('n', '<leader>u', ":<c-u>call search(\'\\u\')<CR>", { desc = 'Next [U]pper', silent = true })
 -- command mode abbreviations
 -- FIXME: migrate to this when version 0.10 released
 -- vim.keymap.set("ca", "tn", "tabnew")
@@ -381,7 +382,8 @@ local on_attach = function(_, bufnr)
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gD', ":vs | lua require('telescope.builtin').lsp_definitions()<CR>", '[G]oto [D]efinition', true)
   -- nmap('gds', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  nmap('gr', function() return require('telescope.builtin').lsp_references { include_current_line = true } end,
+    '[G]oto [R]eferences')
   nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
   nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
