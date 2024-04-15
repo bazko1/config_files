@@ -91,7 +91,7 @@ require("lazy").setup({
 
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.4',
+    tag = '0.1.6',
     opts = {
       defaults = {
         mappings = {
@@ -218,15 +218,15 @@ vim.opt.nrformats:append("alpha")
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
--- if os.getenv('TMUX') and not os.getenv('WSLENV')
--- then
---   vim.g.clipboard = {
---       name = 'tmux clipboard',
---       copy =  { ["+"] = { "tmux", "load-buffer", "-" },   ["*"] = { "tmux", "load-buffer", "-" } },
---       paste = { ["+"] = { "tmux", "save-buffer",  "-" },   ["*"] = { "tmux", "load-buffer", "-" } },
---       cache_enabled = true
---   }
--- end
+if os.getenv('TMUX') and not os.getenv('WSLENV')
+then
+  vim.g.clipboard = {
+    name = 'tmux clipboard',
+    copy = { ["+"] = { "tmux", "load-buffer", "-" }, ["*"] = { "tmux", "load-buffer", "-" } },
+    paste = { ["+"] = { "tmux", "save-buffer", "-" }, ["*"] = { "tmux", "load-buffer", "-" } },
+    cache_enabled = true
+  }
+end
 -- Enable break indent
 vim.o.breakindent = true
 -- Save undo history
@@ -266,6 +266,7 @@ vim.keymap.set('n', ']o', vim.diagnostic.open_float, { desc = 'Open floating dia
 vim.keymap.set('n', '<leader>lq', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 vim.keymap.set('n', '<leader>sq', require('telescope.builtin').quickfix, { desc = '[S]earch [Q]uickfix list' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch workspace [d]iagnostics' })
+vim.keymap.set('n', '<leader>q', require('telescope.builtin').diagnostics, { desc = 'Diagnostics' })
 
 -- telescope configuration
 pcall(require('telescope').load_extension, 'fzf')
@@ -378,6 +379,8 @@ local on_attach = function(_, bufnr)
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  nmap('<leader>as', vim.lsp.buf.document_symbol, '[A]ll [S]ymbols')
+  -- nmap('<leader>as', vim.lsp.buf.workspace_symbol, '[A]ll [S]ymbols')
 
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gD', ":vs | lua require('telescope.builtin').lsp_definitions()<CR>", '[G]oto [D]efinition', true)
@@ -412,7 +415,11 @@ require('mason').setup()
 require('mason-lspconfig').setup()
 
 local servers = {
-  gopls = {},
+  gopls = {
+    gopls = {
+      gofumpt = true,
+    },
+  },
   -- pyright = {},
   lua_ls = {
     Lua = {
