@@ -379,8 +379,6 @@ local on_attach = function(_, bufnr)
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-  nmap('<leader>as', vim.lsp.buf.document_symbol, '[A]ll [S]ymbols')
-  -- nmap('<leader>as', vim.lsp.buf.workspace_symbol, '[A]ll [S]ymbols')
 
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gD', ":vs | lua require('telescope.builtin').lsp_definitions()<CR>", '[G]oto [D]efinition', true)

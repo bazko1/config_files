@@ -9,6 +9,7 @@
 	p = push
 	s = status
 	br = branch --current
+	pl = pull
 	st = status -uno
 	curr = branch --show-current
 	lc = "!fn() { \
