@@ -1,5 +1,4 @@
 # functions
-fcd(){ cd "$(find . -maxdepth 1 -type d | fzf)" || return; }
 gsl(){ git log --pretty=oneline --abbrev-commit | fzf --preview-window down:70% --preview 'echo {} | cut -f 1 -d " " | xargs git show --color=always'; }
 gfl() { git log --pretty=oneline --abbrev-commit | fzf --preview-window down:70% --preview 'echo {} | cut -f 1 -d " " | xargs -I % git diff-tree --no-commit-id --name-only -r %'; }
 docker_rm_unnamed() { docker rmi "$(docker images | grep '^<none>' | awk '{print $3}')"; }
@@ -20,6 +19,7 @@ alias start_nemo='nemo . 2>/dev/null &'
 alias vim=nvim
 alias watch_go_lint='watchexec -e go -- golangci-lint run ./...'
 alias watch_go_test='watchexec -e go -- go test ./...'
+alias fcd='`__fzf_cd__`'
 
 # exports
 if [ -f "/etc/wsl.conf" ]; then
