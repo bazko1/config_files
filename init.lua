@@ -29,7 +29,7 @@ require("lazy").setup({
     priority = 1000,
     config = function()
       require('onedark').setup({
-        style = 'darker'
+        style = 'deep'
       })
       require('onedark').load()
       vim.cmd.colorscheme 'onedark'
@@ -209,8 +209,8 @@ vim.wo.number = true
 vim.opt.number = true
 -- Disable swap files
 vim.opt.swapfile = false
--- spellcheck disable
-vim.opt.spell = false
+-- spellcheck
+vim.opt.spell = true
 -- make copy into * clipboard by default
 vim.opt.clipboard = { "unnamedplus", "unnamed" }
 -- ctrl-a/x incr decr alphabet letters
