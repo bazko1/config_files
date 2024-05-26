@@ -16,7 +16,7 @@ export CONFIG_DIR=$DIR
 alias docker_rm_stoped='docker rm $(docker ps -a -q)'
 alias shortps="PS1='\[\033[01;34m\]\W\[\033[00m\]\$ '"
 alias start_nemo='nemo . 2>/dev/null &'
-alias vim=nvim
+alias v=nvim
 alias watch_go_lint='watchexec -e go -- golangci-lint run ./...'
 alias watch_go_test='watchexec -e go -- go test ./...'
 alias fcd='`__fzf_cd__`'
@@ -30,5 +30,5 @@ else
 fi
 
 export PATH="$PATH:/opt/nvim-linux64/bin:/usr/local/go/bin:$HOME/go/bin"
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
