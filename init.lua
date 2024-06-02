@@ -416,6 +416,7 @@ local servers = {
   gopls = {
     gopls = {
       gofumpt = true,
+      symbolScope = "workspace",
     },
   },
   -- pyright = {},
