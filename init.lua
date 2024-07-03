@@ -178,15 +178,22 @@ require("lazy").setup({
   },
   { "szw/vim-maximizer" },
   { "benfowler/telescope-luasnip.nvim" },
+  { "mfussenegger/nvim-dap" },
   {
     "f-person/git-blame.nvim",
     opts = {
       enabled = false,
     }
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    dependencies = { "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio" }
   }
 }, {})
 
 -- vim opts
+vim.opt.exrc = true
 -- tabs & indentation
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -220,10 +227,18 @@ vim.opt.showmode = false
 
 if os.getenv('TMUX') and not os.getenv('WSLENV')
 then
+  local copyCommand = { "bash", "-c", "tmux load-buffer - | tmux save-buffer - | xclip -r -selection clipboard" }
+  local pasteCommand = { "tmux", "save-buffer", "-" }
   vim.g.clipboard = {
     name = 'tmux clipboard',
-    copy = { ["+"] = { "tmux", "load-buffer", "-" }, ["*"] = { "tmux", "load-buffer", "-" } },
-    paste = { ["+"] = { "tmux", "save-buffer", "-" }, ["*"] = { "tmux", "load-buffer", "-" } },
+    copy = {
+      ["+"] = copyCommand,
+      ["*"] = copyCommand
+    },
+    paste = {
+      ["+"] = pasteCommand,
+      ["*"] = pasteCommand
+    },
     cache_enabled = true
   }
 end
