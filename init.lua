@@ -189,7 +189,17 @@ require("lazy").setup({
     "rcarriga/nvim-dap-ui",
     dependencies = { "mfussenegger/nvim-dap",
       "nvim-neotest/nvim-nio" }
-  }
+  },
+  {
+    "chentoast/marks.nvim",
+    config = function()
+      require 'marks'.setup {
+        default_mappings = true,
+        signs = true,
+        mappings = {}
+      }
+    end
+  },
 }, {})
 
 -- vim opts
@@ -488,6 +498,7 @@ require("go").setup({
 
 -- custom commands
 vim.api.nvim_create_user_command('TrimWhiteSpace', "%s/\\s\\+$//e", {})
+vim.api.nvim_create_user_command('FormatJSON', ":%!jq .", {})
 
 -- call live_grep over specific filetypes
 vim.api.nvim_create_user_command('LiveGrepType', function(opts)
