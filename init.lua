@@ -271,7 +271,7 @@ vim.keymap.set({ "n" }, "<C-d>", "<C-d>zz")
 -- use ; as : very convenient as not need to hold shift
 vim.keymap.set({ "n", "v", "o" }, ";", ":")
 -- instead the repeat f, t command is set to ,
-vim.keymap.set({ "n", "v", "o" }, ",", ";")
+vim.keymap.set({ "n", "v", "o" }, ":", ";")
 -- repeat back f, t command is set to leader + ,
 vim.keymap.set({ "n", "v", "o" }, "<Leader>,", ",")
 vim.opt.splitright = true
