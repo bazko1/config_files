@@ -275,7 +275,7 @@ vim.keymap.set({ "n", "v", "o" }, ":", ";")
 -- repeat back f, t command is set to leader + ,
 vim.keymap.set({ "n", "v", "o" }, "<Leader>,", ",")
 vim.opt.splitright = true
-vim.keymap.set('n', '<leader>m', ':MaximizerToggle<CR>', { silent = true })
+vim.keymap.set('n', '<leader>mx', ':MaximizerToggle<CR>', { silent = true })
 vim.keymap.set('n', '<leader>u', ":<c-u>call search(\'\\u\')<CR>", { desc = 'Next [U]pper', silent = true })
 -- command mode abbreviations
 -- FIXME: migrate to this when version 0.10 released
@@ -314,6 +314,7 @@ vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch [W]ord' })
 vim.keymap.set('n', '<leader>rs', require('telescope.builtin').resume, { desc = '[R]esume [S]earch for previous picker' })
 vim.keymap.set('n', '<leader>re', require('telescope.builtin').registers, { desc = '[R][e]gister' })
+vim.keymap.set('n', '<leader>ma', require('telescope.builtin').marks, { desc = 'Show [M][A]rks' })
 -- neotree maps
 vim.keymap.set('n', '<leader>t', function() require('neo-tree.command').execute { toggle = true, position = 'right' } end,
   { desc = '[T]oggle NeoTree' })
