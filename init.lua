@@ -167,6 +167,9 @@ require("lazy").setup({
       enable_git_status = false,
       filesystem = {
         hijack_netrw_behavior = "open_current",
+        window = {
+          position = "current",
+        },
         follow_current_file = {
           enabled = true,
         },
@@ -465,7 +468,7 @@ local servers = {
         {
           name = "@vue/typescript-plugin",
           location = "/usr/local/lib/node_modules/@vue/typescript-plugin",
-          languages = {"javascript", "typescript", "vue"},
+          languages = { "javascript", "typescript", "vue", "typescriptreact" },
         },
       },
     },
@@ -473,6 +476,7 @@ local servers = {
       "javascript",
       "typescript",
       "vue",
+      "typescriptreact",
     },
   },
   volar = {},
