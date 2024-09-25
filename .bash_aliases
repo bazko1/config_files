@@ -1,7 +1,7 @@
 # functions
 gsl(){ git log --pretty=oneline --abbrev-commit | fzf --preview-window down:70% --preview 'echo {} | cut -f 1 -d " " | xargs git show --color=always'; }
 gfl() { git log --pretty=oneline --abbrev-commit | fzf --preview-window down:70% --preview 'echo {} | cut -f 1 -d " " | xargs -I % git diff-tree --no-commit-id --name-only -r %'; }
-docker_rm_unnamed() { docker rmi "$(docker images | grep '^<none>' | awk '{print $3}')"; }
+docker_rm_unnamed() { docker image rm "$(docker image ls | grep '^<none>' | awk '{print $3}')"; }
 
 SOURCE=${BASH_SOURCE[0]}
 while [ -L "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
