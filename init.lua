@@ -238,23 +238,23 @@ vim.opt.nrformats:append("alpha")
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
-if os.getenv('TMUX') and not os.getenv('WSLENV')
-then
-  local copyCommand = { "bash", "-c", "tmux load-buffer - | tmux save-buffer - | xclip -r -selection clipboard" }
-  local pasteCommand = { "tmux", "save-buffer", "-" }
-  vim.g.clipboard = {
-    name = 'tmux clipboard',
-    copy = {
-      ["+"] = copyCommand,
-      ["*"] = copyCommand
-    },
-    paste = {
-      ["+"] = pasteCommand,
-      ["*"] = pasteCommand
-    },
-    cache_enabled = true
-  }
-end
+-- if os.getenv('TMUX') and not os.getenv('WSLENV')
+-- then
+--   local copyCommand = { "bash", "-c", "tmux load-buffer - | tmux save-buffer - | xclip -r -selection clipboard" }
+--   local pasteCommand = { "tmux", "save-buffer", "-" }
+--   vim.g.clipboard = {
+--     name = 'tmux clipboard',
+--     copy = {
+--       ["+"] = copyCommand,
+--       ["*"] = copyCommand
+--     },
+--     paste = {
+--       ["+"] = pasteCommand,
+--       ["*"] = pasteCommand
+--     },
+--     cache_enabled = true
+--   }
+-- end
 -- Enable break indent
 vim.o.breakindent = true
 -- Save undo history

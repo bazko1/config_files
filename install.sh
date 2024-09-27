@@ -33,9 +33,11 @@ createLink "init.lua" ".config/nvim"
 if ! [ -f "/etc/wsl.conf" ]; then
   mkdir -p "${INSTALL_DIR}/.config/alacritty"
   createLink "alacritty-linux.yml" ".config/alacritty/alacritty.yml"
+  createLink "wezterm-linux.lua" ".wezterm.lua"
 else
   # FIXME: This should be taken via cmd.exe but need to fix some decoding issues.
   WIN_USER="${WIN_USER:-bazyli}"
   # links does not work cross platform so we just make copy
   cp "alacritty-windows.yml" "/mnt/c/Users/${WIN_USER}/AppData/Roaming/alacritty/alacritty.yml"
+  cp "wezterm-windows.lua" "/mnt/c/Users/${WIN_USER}/.wezterm.lua"
 fi
