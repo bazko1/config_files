@@ -16,10 +16,12 @@ export CONFIG_DIR=$DIR
 alias docker_rm_stoped='docker rm $(docker ps -a -q)'
 alias shortps="PS1='\[\033[01;34m\]\W\[\033[00m\]\$ '"
 alias start_nemo='nemo . 2>/dev/null &'
-alias v=nvim
 alias watch_go_lint='watchexec -e go -- golangci-lint run ./...'
 alias watch_go_test='watchexec -e go -- go test ./...'
 alias fcd='`__fzf_cd__`'
+alias v=nvim
+alias k=kubectl
+alias d=docker
 
 # exports
 if [ -f "/etc/wsl.conf" ]; then
