@@ -20,4 +20,36 @@ config.window_padding = {
   bottom = 0,
 }
 
+-- custom Catppuccin-Macchiato like color scheme
+config.colors = {
+  -- The default text color
+  foreground = 'white',
+  -- The default background color
+  background = '#24273A',
+
+  cursor_bg = '#F4DBD6',
+  cursor_fg = '#24273A',
+  ansi = {
+    '#494D64', -- surface1
+    '#ED8796', -- red
+    '#A6DA95', -- green
+    '#EED49F', -- yellow
+    '#8AADF4', -- blue
+    '#F5BDE6', -- pink
+    '#8BD5CA', -- teal
+    '#B8C0E0', -- subtext1
+  },
+  brights = {
+    '#5B6078', -- surface2
+    '#ED8796', -- red
+    '#A6DA95', -- green
+    '#EED49F', -- yellow
+    '#8AADF4', -- blue
+    '#F5BDE6', -- pink
+    '#8BD5CA', -- teal
+    '#A5ADCB', -- subtext0
+  },
+  indexed = { [16] = '#F5A97F', [17] = '#F4DBD6' }
+}
+
 return config
