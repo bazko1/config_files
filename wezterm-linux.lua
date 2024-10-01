@@ -2,7 +2,7 @@ local wezterm = require 'wezterm'
 local config = {}
 
 config.color_scheme = 'OneHalfDark'
-config.font = wezterm.font 'CaskaydiaCove Nerd Font Mono'
+config.font = wezterm.font 'CaskaydiaCove Nerd Font'
 config.font_size = 22
 config.enable_tab_bar = false
 config.keys = {
