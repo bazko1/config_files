@@ -301,14 +301,21 @@ vim.keymap.set('n', '<leader>q', require('telescope.builtin').diagnostics, { des
 pcall(require('telescope').load_extension, 'fzf')
 pcall(require('telescope').load_extension 'luasnip')
 
-vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_status, { desc = 'Search [G]it [S]tatus' })
-vim.keymap.set('n', '<leader>e', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>of', function() require('telescope.builtin').oldfiles { only_cwd = true } end,
-  { desc = 'Search [O]ld [F]files' })
 local search_fn = function()
   require('telescope.builtin').find_files { find_command = { 'rg', '--files', '--hidden', '-g', '!.git', '-u' } }
 end
+vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
+vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_status, { desc = 'Search [G]it [S]tatus' })
+vim.keymap.set('n', '<leader>e', function()
+    if not next(vim.fs.find('.git', vim.fn.getcwd())) then
+      search_fn()
+    else
+      require('telescope.builtin').git_files {}
+    end
+  end,
+  { desc = 'Search [G]it [F]iles' })
+vim.keymap.set('n', '<leader>of', function() require('telescope.builtin').oldfiles { only_cwd = true } end,
+  { desc = 'Search [O]ld [F]files' })
 vim.keymap.set('n', '<leader>sf', search_fn, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>f', search_fn, { desc = '[S]earch [F]iles' })
 
@@ -444,7 +451,8 @@ end
 require('mason').setup()
 require('mason-lspconfig').setup()
 local mason_registry = require('mason-registry')
-local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
+local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() ..
+    '/node_modules/@vue/language-server'
 
 local servers = {
   gopls = {
