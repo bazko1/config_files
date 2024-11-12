@@ -519,18 +519,7 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
-local ok, path = pcall(require, 'nvim-lsp-installer.path')
-local gopls_cmd
-if ok then
-  local install_root_dir = path.concat { vim.fn.stdpath 'data', 'lsp_servers' }
-  gopls_cmd = { install_root_dir .. '/go/gopls' }
-end
-
-require("go").setup({
-  lsp_codelens = false,
-  gopls_cmd = gopls_cmd,
-  luasnip = true,
-})
+require("go").setup({luasnip = true})
 
 -- custom commands
 vim.api.nvim_create_user_command('TrimWhiteSpace', "%s/\\s\\+$//e", {})
