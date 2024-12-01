@@ -11,6 +11,11 @@ config.keys = {
     mods = 'SHIFT|CTRL',
     action = wezterm.action.ToggleFullScreen,
   },
+  {
+    key = 't',
+    mods = 'CMD',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
 }
 
 config.window_padding = {

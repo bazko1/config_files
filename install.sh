@@ -30,6 +30,9 @@ fi
 mkdir -p "${INSTALL_DIR}/.config/nvim"
 createLink "init.lua" ".config/nvim"
 
+mkdir -p "${INSTALL_DIR}/.config/i3"
+createLink "i3/config" ".config/i3"
+
 if ! [ -f "/etc/wsl.conf" ]; then
   mkdir -p "${INSTALL_DIR}/.config/alacritty"
   createLink "alacritty-linux.yml" ".config/alacritty/alacritty.yml"
