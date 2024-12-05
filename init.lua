@@ -91,7 +91,7 @@ require("lazy").setup({
 
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.6',
+    tag = '0.1.8',
     opts = {
       defaults = {
         mappings = {
@@ -519,7 +519,7 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
-require("go").setup({luasnip = true})
+require("go").setup({ luasnip = true })
 
 -- custom commands
 vim.api.nvim_create_user_command('TrimWhiteSpace', "%s/\\s\\+$//e", {})
