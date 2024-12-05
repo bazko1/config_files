@@ -100,7 +100,6 @@ require("lazy").setup({
             ["<C-k>"] = "move_selection_previous",
             ["<Esc><Esc>"] = "close",
             ["<C-u>"] = false,
-            ['<C-d>'] = "delete_buffer",
           },
           n = {
             ["<Esc><Esc>"] = "close",
@@ -120,6 +119,13 @@ require("lazy").setup({
           additional_args = function(_)
             return { '--hidden', '--glob', '!**/.git/*' }
           end
+        },
+        buffers = {
+          mappings = {
+            i = {
+              ['<C-d>'] = "delete_buffer",
+            },
+          },
         },
       },
     },
@@ -282,9 +288,7 @@ vim.opt.splitright = true
 vim.keymap.set('n', '<leader>mx', ':MaximizerToggle<CR>', { silent = true })
 vim.keymap.set('n', '<leader>u', ":<c-u>call search(\'\\u\')<CR>", { desc = 'Next [U]pper', silent = true })
 -- command mode abbreviations
--- FIXME: migrate to this when version 0.10 released
--- vim.keymap.set("ca", "tn", "tabnew")
-vim.cmd("ca tn tabnew")
+vim.keymap.set("ca", "tn", "tabnew")
 
 --terminal mode exit
 vim.keymap.set("t", "<C-space>", "<C-\\><C-n>", { silent = true })
