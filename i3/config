@@ -63,11 +63,13 @@ bindsym $mod+q kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec --no-startup-id GTK_THEME=Adwaita:dark dmenu_run
-bindsym $mod+d exec --no-startup-id GTK_THEME=Adwaita:dark rofi -modi run -show run
 # rofi
+bindsym $mod+d exec --no-startup-id GTK_THEME=Adwaita:dark rofi -modi run -show run
 bindsym $mod+r exec --no-startup-id GTK_THEME=Adwaita:dark rofi -modi drun -show drun
 bindsym $mod+t exec --no-startup-id GTK_THEME=Adwaita:dark rofi -modi window -show window
-bindsym $mod+Tab exec --no-startup-id GTK_THEME=Adwaita:dark rofi -modi window -show window
+bindsym $mod+Tab exec --no-startup-ie GTK_THEME=Adwaita:dark rofi -modi window -show window
+
+# rofi -run-shell-command 'kitty --hold {cmd}'
 # 
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
@@ -123,7 +125,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+c focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -200,4 +202,12 @@ mode "resize" {
 # finds out, if available)
 bar {
         status_command i3status
+        font pango:DejaVu Sans Mono 12
 }
+
+bindsym $mod+b [class="Mozilla Firefox"] focus workspace
+bindsym $mod+n workspace next
+bindsym $mod+p workspace prev
+bindsym $mod+x [urgent=latest] focus
+# log out
+bindsym $mod+Shift+o exec --no-startup-id i3lock
