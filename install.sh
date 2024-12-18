@@ -32,6 +32,11 @@ createLink "init.lua" ".config/nvim"
 
 mkdir -p "${INSTALL_DIR}/.config/i3"
 createLink "i3/config" ".config/i3"
+createLink "i3status.conf" ".i3status.conf"
+
+mkdir -p "${INSTALL_DIR}/.config/rofi"
+createLink "config.rasi" ".config/rofi"
+createLink "onedark.rasi" ".config/rofi"
 
 if ! [ -f "/etc/wsl.conf" ]; then
   mkdir -p "${INSTALL_DIR}/.config/alacritty"
