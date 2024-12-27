@@ -29,7 +29,11 @@ require("lazy").setup({
     priority = 1000,
     config = function()
       require('onedark').setup({
-        style = 'deep'
+        style = 'deep',
+        transparent = true,
+        -- lualine = {
+        --   transparent = false, -- lualine center bar transparency
+        -- },
       })
       require('onedark').load()
       vim.cmd.colorscheme 'onedark'
@@ -244,6 +248,8 @@ vim.opt.clipboard = { "unnamedplus", "unnamed" }
 vim.opt.nrformats:append("alpha")
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
+-- show cursorline
+vim.opt.cursorline = true
 
 -- if os.getenv('TMUX') and not os.getenv('WSLENV')
 -- then
@@ -592,13 +598,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 --
-
--- set cursorline on each buffer
-vim.api.nvim_create_autocmd("BufNew", {
-  callback = function()
-    vim.opt.cursorline = true
-  end,
-})
 
 -- [[ Configure nvim-cmp ]]
 local cmp = require 'cmp'
