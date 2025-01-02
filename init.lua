@@ -85,8 +85,9 @@ require("lazy").setup({
           { 'filename', path = 1 }
         },
         lualine_c = {},
-        lualine_x = { 'branch' },
-        lualine_y = { 'diagnostics' },
+        lualine_x = { 'branch', 'filetype' },
+        lualine_y = { 'diagnostics', },
+        lualine_z = { 'location', }
       },
     },
   },
@@ -214,6 +215,11 @@ require("lazy").setup({
       }
     end
   },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {}
+  }
 }, {})
 
 -- vim opts

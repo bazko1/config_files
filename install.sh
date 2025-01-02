@@ -38,6 +38,8 @@ mkdir -p "${INSTALL_DIR}/.config/rofi"
 createLink "config.rasi" ".config/rofi"
 createLink "onedark.rasi" ".config/rofi"
 
+createLink "scripts/" ".scripts"
+
 if ! [ -f "/etc/wsl.conf" ]; then
   mkdir -p "${INSTALL_DIR}/.config/alacritty"
   createLink "alacritty-linux.yml" ".config/alacritty/alacritty.yml"
