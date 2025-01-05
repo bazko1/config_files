@@ -1,8 +1,10 @@
-set editing-mode vi
-set show-mode-in-prompt on
+$if Bash
+  set editing-mode vi
+  set show-mode-in-prompt on
+  set vi-cmd-mode-string \1\e[0m\e[48;5;119m\e[38;5;233mN\e[0m\2
+  set vi-ins-mode-string \1\e[0m\e[48;5;32m\e[38;5;233mI\e[0m\2
+$endif
 
-set vi-cmd-mode-string \1\e[0m\e[48;5;119m\e[38;5;233mN\e[0m\2
-set vi-ins-mode-string \1\e[0m\e[48;5;32m\e[38;5;233mI\e[0m\2
-set keyseq-timeout 0
+set keyseq-timeout 10
 # custom mappings
 Control-k: kill-line
