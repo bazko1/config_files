@@ -218,7 +218,9 @@ require("lazy").setup({
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {}
+    opts = {
+      signs = false
+    }
   }
 }, {})
 
@@ -495,7 +497,7 @@ local servers = {
         {
           name = "@vue/typescript-plugin",
           location = vue_language_server_path,
-          languages = { "javascript", "typescript", "vue", "typescriptreact" },
+          languages = { "vue" },
         },
       },
     },
@@ -504,6 +506,7 @@ local servers = {
       "typescript",
       "vue",
       "typescriptreact",
+      "javascriptreact",
     },
   },
   volar = {},
