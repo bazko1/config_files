@@ -8,7 +8,7 @@
  */
 
 configuration {
-  font: "Iosevka Nerd Font Medium 12";
+  font: "Iosevka Nerd Font Medium 13";
 
   drun {
     display-name: "";
@@ -77,7 +77,7 @@ listview {
 
 element {
   border: 0 0 0 2px;
-  children: [element-text];
+  children: [element-icon, element-text];
 }
 
 element selected {
@@ -87,6 +87,10 @@ element selected {
 
 element-text {
   padding: 10px;
+}
+
+element-icon {
+  padding: 10px 10px;
 }
 
 element-text selected {
