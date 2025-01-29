@@ -8,7 +8,7 @@
 	l = log
 	p = push
 	s = status
-	br = branch --current
+	br = branch --show-current
 	pl = pull
 	st = status -uno
 	curr = branch --show-current

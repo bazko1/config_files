@@ -23,25 +23,42 @@ font pango:monospace 8
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
+font pango:Noto Sans Mono 14
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
+
+# exec_always --no-startup-id /home/bazyli/.scripts/laptop_external_out.sh
+
+# compositor for transparency and window change animation
+exec --no-startup-id picom &
+
+# volume control
+exec --no-startup-id volctl &
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+set $i3lock i3lock -t --image=/home/bazyli/Pictures/landscape.png --show-failed-attempts --ignore-empty-password --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- $i3lock
+
+# lock after one minute
+exec --no-startup-id xset dpms 0 0 180 &
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
-# Use pactl to adjust volume in PulseAudio.
+exec --no-startup-id setxkbmap -option caps:escape
+
+exec --no-startup-id feh --bg-scale /home/bazyli/Pictures/space.jpg
+
 set $refresh_i3status killall -SIGUSR1 i3status
+
+# Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
@@ -65,12 +82,12 @@ bindsym $mod+q kill
 # bindsym $mod+d exec --no-startup-id GTK_THEME=Adwaita:dark dmenu_run
 # rofi
 bindsym $mod+d exec --no-startup-id GTK_THEME=Adwaita:dark rofi -modi run -show run
-bindsym $mod+r exec --no-startup-id GTK_THEME=Adwaita:dark rofi -modi drun -show drun
-bindsym $mod+t exec --no-startup-id GTK_THEME=Adwaita:dark rofi -modi window -show window
+bindsym $mod+r exec --no-startup-id GTK_THEME=Adwaita:dark rofi -modi drun -show drun -show-icons
+bindsym $mod+t exec --no-startup-id GTK_THEME=Adwaita:dark rofi -modi window -show window -show-icons
 bindsym $mod+Tab exec --no-startup-ie GTK_THEME=Adwaita:dark rofi -modi window -show window
 
 # rofi -run-shell-command 'kitty --hold {cmd}'
-# 
+#
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -210,4 +227,17 @@ bindsym $mod+n workspace next
 bindsym $mod+p workspace prev
 bindsym $mod+x [urgent=latest] focus
 # log out
-bindsym $mod+Shift+o exec --no-startup-id i3lock
+bindsym $mod+Shift+o exec --no-startup-id $i3lock
+
+bindsym $mod+Shift+v exec --no-startup-id pavucontrol
+for_window [Title="Volume Control"] floating enable
+for_window [Title=".* - KeePass$"] floating enable
+
+# Make the currently focused window a scratchpad
+bindsym $mod+minus move scratchpad
+# Show the first scratchpad window
+bindsym $mod+plus scratchpad show
+
+focus_follows_mouse no
+gaps inner 15
+smart_gaps on
