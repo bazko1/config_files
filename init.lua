@@ -568,6 +568,9 @@ end, { nargs = 1 })
 vim.api.nvim_create_autocmd("ModeChanged", {
   pattern = "*:[vV\x16]*",
   callback = function()
+    if vim.bo.buftype == "terminal" then
+      return
+    end
     vim.opt.list = true
     vim.opt.relativenumber = true
   end,
@@ -575,6 +578,9 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 vim.api.nvim_create_autocmd("ModeChanged", {
   pattern = "[vV\x16]*:*",
   callback = function()
+    if vim.bo.buftype == "terminal" then
+      return
+    end
     vim.opt.list = false
     vim.opt.relativenumber = false
   end,
@@ -594,6 +600,15 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     require('go.format').goimport() -- goimport + gofmt
   end,
   group = format_sync_grp,
+})
+
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  callback = function()
+    vim.opt_local.number = false
+    vim.opt_local.spell = false
+    vim.opt_local.laststatus = 0
+  end,
 })
 
 -- [[ Highlight on yank ]]
