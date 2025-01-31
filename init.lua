@@ -104,7 +104,6 @@ require("lazy").setup({
             ["<C-j>"] = "move_selection_next",
             ["<C-k>"] = "move_selection_previous",
             ["<Esc><Esc>"] = "close",
-            ["<C-u>"] = false,
           },
           n = {
             ["<Esc><Esc>"] = "close",
@@ -443,6 +442,7 @@ local on_attach = function(_, bufnr)
   nmap('gr', function() return require('telescope.builtin').lsp_references { include_current_line = true } end,
     '[G]oto [R]eferences')
   nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+  nmap('gs', vim.lsp.buf.signature_help, '[G]imme [S]ignature')
   nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
   nmap('<leader>ss', require('telescope.builtin').lsp_document_symbols, '[S]earch [S]ymbols')
@@ -453,7 +453,7 @@ local on_attach = function(_, bufnr)
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
-  -- nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+  nmap('<leader>d', vim.lsp.buf.declaration, 'Type [d]eclaration')
   nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
   nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
   nmap('<leader>wl', function()
