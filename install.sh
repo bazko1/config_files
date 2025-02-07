@@ -26,6 +26,7 @@ if [ "$ID" == "rhel" ]; then
 else
   createLink ".bash_aliases" ".bash_aliases"
 fi
+createLink "bash/" ".bash"
 
 mkdir -p "${INSTALL_DIR}/.config/nvim"
 createLink "init.lua" ".config/nvim"
