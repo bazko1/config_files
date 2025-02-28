@@ -7,6 +7,7 @@ alias watch_go_lint='watchexec -e go -- golangci-lint run ./...'
 alias watch_go_test='watchexec -e go -- go test ./...'
 alias fcd='`__fzf_cd__`'
 alias v=nvim
+alias g=git
 alias k=kubectl
 alias d=docker
 alias disable_lockout='xset s off -dpms'

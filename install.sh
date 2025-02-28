@@ -31,6 +31,9 @@ createLink "bash/" ".bash"
 mkdir -p "${INSTALL_DIR}/.config/nvim"
 createLink "init.lua" ".config/nvim"
 
+mkdir -p "${INSTALL_DIR}/.config/fish"
+createLink "config.fish" ".config/fish/config.fish"
+
 mkdir -p "${INSTALL_DIR}/.config/i3"
 createLink "i3/config" ".config/i3"
 createLink "i3status.conf" ".i3status.conf"
