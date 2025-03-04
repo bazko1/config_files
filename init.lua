@@ -510,6 +510,22 @@ local servers = {
     },
   },
   volar = {},
+  pylsp = {
+      pylsp = {
+        plugins = {
+          flake8 = {
+            enabled = true,
+            ignore = { 'E231' },
+            maxLineLength = 120,
+          },
+          pycodestyle = {
+            enabled = true,
+            ignore = { 'E231' },
+            maxLineLength = 120,
+          },
+        },
+      },
+  }
 }
 
 -- Setup neovim lua configuration
