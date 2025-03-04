@@ -319,7 +319,7 @@ pcall(require('telescope').load_extension, 'fzf')
 pcall(require('telescope').load_extension 'luasnip')
 
 local search_fn = function()
-  require('telescope.builtin').find_files { find_command = { 'rg', '--files', '--hidden', '-g', '!.git', '-u' } }
+  require('telescope.builtin').find_files { find_command = { 'rg', '--files', '--hidden', '-g', '!.git', '-g', '!node_modules', '-u' } }
 end
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 vim.keymap.set('n', '<leader>gs', require('telescope.builtin').git_status, { desc = 'Search [G]it [S]tatus' })
