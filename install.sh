@@ -11,6 +11,7 @@ createLink ()
 {
   args="-s"
   $FORCE && args+="f"
+  [ -d "${INSTALL_DIR}/$2" ] && ! $FORCE && return
   ln "$args" "${SCRIPT_DIR}/$1" "${INSTALL_DIR}/$2"
 }
 
@@ -42,7 +43,7 @@ mkdir -p "${INSTALL_DIR}/.config/rofi"
 createLink "config.rasi" ".config/rofi"
 createLink "onedark.rasi" ".config/rofi"
 
-createLink "scripts/" ".scripts"
+createLink "scripts" ".scripts"
 
 if ! [ -f "/etc/wsl.conf" ]; then
   mkdir -p "${INSTALL_DIR}/.config/alacritty"
