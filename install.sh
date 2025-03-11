@@ -35,6 +35,10 @@ createLink "init.lua" ".config/nvim"
 mkdir -p "${INSTALL_DIR}/.config/fish"
 createLink "config.fish" ".config/fish/config.fish"
 
+mkdir -p "${INSTALL_DIR}/.config/fish/functions"
+createLink "fish/functions/fish_prompt.fish" ".config/fish/functions/fish_prompt.fish"
+createLink "fish/functions/fish_user_key_bindings.fish" ".config/fish/functions/fish_user_key_bindings.fish"
+
 mkdir -p "${INSTALL_DIR}/.config/i3"
 createLink "i3/config" ".config/i3"
 createLink "i3status.conf" ".i3status.conf"
