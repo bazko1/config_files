@@ -2,7 +2,7 @@
 
 alias docker_rm_stoped='docker rm $(docker ps -a -q)'
 alias shortps="PS1='\[\033[01;34m\]\W\[\033[00m\]\$ '"
-alias start_nemo='nemo . 2>/dev/null &'
+alias start_nemo='GTK_THEME=Adwaita:dark nemo . 2>/dev/null &'
 alias watch_go_lint='watchexec -e go -- golangci-lint run ./...'
 alias watch_go_test='watchexec -e go -- go test ./...'
 alias fcd='`__fzf_cd__`'

@@ -354,7 +354,7 @@ vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
     ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx',
-      'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'yaml', 'vue' },
+      'javascript', 'typescript', 'vimdoc', 'vim', 'bash', 'yaml', 'vue', 'markdown', 'markdown_inline' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
@@ -435,6 +435,9 @@ local on_attach = function(_, bufnr)
 
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+  nmap('<leader>tt', function()
+    vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = 0 }, { bufnr = 0 })
+  end, '[T]oggle inlay hints')
 
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gD', ":vs | lua require('telescope.builtin').lsp_definitions()<CR>", '[G]oto [D]efinition', true)
@@ -477,6 +480,11 @@ local servers = {
     gopls = {
       gofumpt = true,
       symbolScope = "workspace",
+      ["ui.inlayhint.hints"] = {
+        compositeLiteralFields = true,
+        constantValues = true,
+        parameterNames = true
+      },
     },
   },
   -- pyright = {},
