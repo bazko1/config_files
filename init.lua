@@ -345,8 +345,8 @@ vim.keymap.set('n', '<leader>rs', require('telescope.builtin').resume, { desc = 
 vim.keymap.set('n', '<leader>re', require('telescope.builtin').registers, { desc = '[R][e]gister' })
 vim.keymap.set('n', '<leader>ma', require('telescope.builtin').marks, { desc = 'Show [M][A]rks' })
 -- neotree maps
-vim.keymap.set('n', '<leader>t', function() require('neo-tree.command').execute { toggle = true, position = 'right' } end,
-  { desc = '[T]oggle NeoTree' })
+vim.keymap.set('n', '<leader>tn', function() require('neo-tree.command').execute { toggle = true, position = 'right' } end,
+  { desc = '[T]oggle [N]eoTree' })
 
 -- [[ Configure Treesitter ]]
 -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
@@ -437,7 +437,7 @@ local on_attach = function(_, bufnr)
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
   nmap('<leader>tt', function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = 0 }, { bufnr = 0 })
-  end, '[T]oggle inlay hints')
+  end, '[T]oggle inlay [T]ype [T]raits')
 
   nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
   nmap('gD', ":vs | lua require('telescope.builtin').lsp_definitions()<CR>", '[G]oto [D]efinition', true)
