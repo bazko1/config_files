@@ -22,6 +22,10 @@ configuration {
     display-name: "";
   }
 
+  dmenu {
+    display-name: "";
+  }
+
   timeout {
     delay: 10;
     action: "kb-cancel";
@@ -61,7 +65,7 @@ inputbar {
   border: 0 0 0 2px;
   border-color: @blue;
   border-radius: 6px;
-  children: [entry];
+  children: [prompt, entry];
   margin: 0 0 6px 0;
 }
 
@@ -97,3 +101,12 @@ element-text selected {
   background-color: @red-alt;
   text-color: @red;
 }
+
+prompt {
+  enabled: true;
+  padding: 10px 10px 0px 10px;
+  background-color: @blue-alt;
+  text-color: @white;
+  font: "Iosevka Nerd Font Medium 12";
+}
+ 

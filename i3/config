@@ -222,7 +222,7 @@ bar {
         font pango:DejaVu Sans Mono 12
 }
 
-bindsym $mod+b [class="Mozilla Firefox"] focus workspace
+bindsym $mod+b exec --no-startup-id  ~/.scripts/run_url.sh "$(rofi -dmenu)"
 bindsym $mod+n workspace next
 bindsym $mod+p workspace prev
 bindsym $mod+x [urgent=latest] focus
