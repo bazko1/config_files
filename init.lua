@@ -96,7 +96,6 @@ require("lazy").setup({
 
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.8',
     opts = {
       defaults = {
         mappings = {
