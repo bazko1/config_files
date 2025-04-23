@@ -239,5 +239,22 @@ bindsym $mod+minus move scratchpad
 bindsym $mod+plus scratchpad show
 
 focus_follows_mouse no
-gaps inner 5
+gaps inner 8
+gaps outer -8
 smart_gaps on
+
+default_border pixel 2
+default_floating_border pixel 2
+for_window [class="^.*"] border pixel 2
+for_window [class="^.*Lark.*"] border pixel 4
+hide_edge_borders vertical
+
+# client.focused #4c7899 #285577 #ffffff #2e9ef4   #ffffff
+
+# Correct handling of floating windows
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="dialog"] floating enable
+for_window [window_role="menu"] floating enable
+for_window [window_role="Preferences"] floating enable
