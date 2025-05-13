@@ -8,7 +8,7 @@
  */
 
 configuration {
-  font: "Iosevka Nerd Font Medium 13";
+  font: "Noto Sans Mono 13";
 
   drun {
     display-name: "";
@@ -107,6 +107,7 @@ prompt {
   padding: 10px 10px 0px 10px;
   background-color: @blue-alt;
   text-color: @white;
-  font: "Iosevka Nerd Font Medium 13";
+  font: "Noto Sans Mono 13";
+
 }
  
