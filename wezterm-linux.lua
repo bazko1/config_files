@@ -3,7 +3,7 @@ local config = {}
 
 config.color_scheme = 'OneHalfDark'
 config.font = wezterm.font 'CaskaydiaCove Nerd Font'
-config.font_size = 22
+config.font_size = 20
 config.enable_tab_bar = false
 config.keys = {
   {
@@ -12,8 +12,33 @@ config.keys = {
     action = wezterm.action.ToggleFullScreen,
   },
   {
+    key = 'f',
+    mods = 'SHIFT|CTRL',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
+  {
     key = 't',
     mods = 'CMD',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
+  {
+    key = '*',
+    mods = 'CMD',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
+  {
+    key = 'Enter',
+    mods = 'ALT',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
+  {
+    key = 'o',
+    mods = 'ALT',
+    action = wezterm.action.DisableDefaultAssignment,
+  },
+  {
+    key = 'f',
+    mods = 'CTRL',
     action = wezterm.action.DisableDefaultAssignment,
   },
 }
@@ -56,5 +81,7 @@ config.colors = {
   },
   indexed = { [16] = '#F5A97F', [17] = '#F4DBD6' }
 }
+
+config.window_background_opacity = .97
 
 return config
