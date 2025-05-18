@@ -4,7 +4,8 @@
 displays=$(xrandr | grep " connected")
 num_display=$(echo "$displays" | wc -l)
 if  [ "$num_display" -gt 1 ]; then
-  xrandr --auto --output eDP-1 --off
+  edp=$(echo "$displays" | grep "eDP-1" | cut -f 1 -d ' ')
+  xrandr --auto --output "$edp" --off
 else
   xrandr --auto
 fi
