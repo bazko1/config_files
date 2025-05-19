@@ -54,3 +54,6 @@ vim.opt.scrolloff = 5
 vim.opt.confirm = true
 
 vim.opt.guicursor = ''
+
+-- disable swwapfile
+vim.opt.swapfile = false
