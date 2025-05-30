@@ -7,6 +7,9 @@ vim.opt.number = true
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
+-- spellcheck
+vim.opt.spell = true
+
 -- tabs & indentation
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
