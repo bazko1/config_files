@@ -17,10 +17,10 @@ vim.keymap.set('t', '<C-space>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('ca', 'tn', 'tabnew')
 
 -- change split sizes as arrows
-vim.keymap.set('n', '<left>', '<C-W>5<<CR>')
-vim.keymap.set('n', '<right>', '<C-W>5><CR>')
-vim.keymap.set('n', '<up>', '<C-W>5-<CR>')
-vim.keymap.set('n', '<down>', '<C-W>5+<CR>')
+vim.keymap.set('n', '<left>', '<C-W>5<')
+vim.keymap.set('n', '<right>', '<C-W>5>')
+vim.keymap.set('n', '<up>', '<C-W>5-')
+vim.keymap.set('n', '<down>', '<C-W>5+')
 --
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
