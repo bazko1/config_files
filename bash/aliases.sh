@@ -1,5 +1,4 @@
 # aliases
-
 alias docker_rm_stoped='docker rm $(docker ps -a -q)'
 alias shortps="PS1='\[\033[01;34m\]\W\[\033[00m\]\$ '"
 alias start_nemo='GTK_THEME=Adwaita:dark nemo . 2>/dev/null &'
