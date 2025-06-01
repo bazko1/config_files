@@ -9,10 +9,13 @@ echo "Installing configuration to $INSTALL_DIR"
 
 createLink ()
 {
+  local from="${SCRIPT_DIR}/$1"
+  local to="${INSTALL_DIR}/$2"
+
   args="-s"
   $FORCE && args+="f"
   [ -d "${INSTALL_DIR}/$2" ] && ! $FORCE && return
-  ln "$args" "${SCRIPT_DIR}/$1" "${INSTALL_DIR}/$2"
+  ln "$args" "${from}" "${to}" && echo "Created link to: $to"
 }
 
 createLink ".gitconfig" ".gitextra"
@@ -29,8 +32,8 @@ else
 fi
 createLink "bash/" ".bash"
 
-mkdir -p "${INSTALL_DIR}/.config/nvim"
-createLink "init.lua" ".config/nvim"
+# mkdir -p "${INSTALL_DIR}/.config/nvim"
+createLink "nvim" ".config/nvim"
 
 mkdir -p "${INSTALL_DIR}/.config/fish"
 createLink "config.fish" ".config/fish/config.fish"
@@ -51,7 +54,7 @@ createLink "scripts" ".scripts"
 
 if ! [ -f "/etc/wsl.conf" ]; then
   mkdir -p "${INSTALL_DIR}/.config/alacritty"
-  createLink "alacritty-linux.yml" ".config/alacritty/alacritty.yml"
+  createLink "alacritty.toml" ".config/alacritty/alacritty.toml"
   createLink "wezterm-linux.lua" ".wezterm.lua"
 else
   # FIXME: This should be taken via cmd.exe but need to fix some decoding issues.
