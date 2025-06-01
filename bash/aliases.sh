@@ -13,4 +13,4 @@ alias d=docker
 alias disable_lockout='xset s off -dpms'
 alias hdmi_display='xrandr --auto --output eDP-1-1 --off --output HDMI-1-1 --primary'
 alias myconfig_update='git -C $CONFIG_DIR pull'
-alias myconfig_install='cd $CONFIG_DIR && ./install.sh && cd -'
+alias myconfig_install='$CONFIG_DIR/install.sh'
