@@ -9,6 +9,7 @@ return {
     },
     opts = {
       luasnip = true,
+      virtual_text = false,
     },
     event = { 'CmdlineEnter' },
     ft = { 'go', 'gomod' },
