@@ -1,4 +1,5 @@
 # aliases
+
 alias docker_rm_stoped='docker rm $(docker ps -a -q)'
 alias shortps="PS1='\[\033[01;34m\]\W\[\033[00m\]\$ '"
 alias start_nemo='GTK_THEME=Adwaita:dark nemo . 2>/dev/null &'
@@ -14,3 +15,5 @@ alias disable_lockout='xset s off -dpms'
 alias hdmi_display='xrandr --auto --output eDP-1-1 --off --output HDMI-1-1 --primary'
 alias myconfig_update='git -C $CONFIG_DIR pull'
 alias myconfig_install='cd $CONFIG_DIR && ./install.sh && cd -'
+alias lss='ls -larth'
+alias kind_set_config='kind get kubeconfig --name $(kind get clusters) >  ~/.kube/config '
