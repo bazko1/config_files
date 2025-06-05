@@ -10,6 +10,6 @@ DIR=$( cd -P "$( dirname "$SOURCE" )" >/dev/null 2>&1 && pwd )
 
 CONFIG_DIR="$(realpath "$DIR/..")"
 export  CONFIG_DIR
-export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin:/opt/nvim-linux64/bin:$HOME/.cargo/bin"
+export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin:/opt/nvim-linux64/bin:$HOME/.cargo/bin:$HOME/.scripts:$HOME/bin"
 export EDITOR=nvim
 export VISUAL=nvim
