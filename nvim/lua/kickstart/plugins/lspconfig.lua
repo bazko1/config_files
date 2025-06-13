@@ -28,14 +28,12 @@ return {
       'saghen/blink.cmp',
     },
     config = function()
-      --TODO: checkout:help lsp-vs-treesitter`
-
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
         callback = function(event)
           local map = function(keys, func, desc, mode)
             mode = mode or 'n'
-            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc, silent = true })
           end
 
           -- Rename the variable under your cursor.
@@ -65,16 +63,25 @@ return {
 
           -- Fuzzy find all the symbols in your current document.
           --  Symbols are things like variables, functions, types, etc.
-          map('gds', require('telescope.builtin').lsp_document_symbols, 'Open [D]ocument [S]ymbols')
+          map('<leader>ss', require('telescope.builtin').lsp_document_symbols, 'Open document [S]ymbol[s]')
 
+          map('<leader>wl', function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+          end, '[w]orkspace list')
+          --
           -- Fuzzy find all the symbols in your current workspace.
           --  Similar to document symbols, except searches over your entire project.
-          map('gws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open [W]orkspace [S]ymbols')
+          map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Open [W]orkspace [S]ymbols')
 
           -- Jump to the type of the word under your cursor.
           --  Useful when you're not sure what type a variable is and you want to see
           --  the definition of its *type*, not where it was *defined*.
-          map('grt', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype Definition')
+          map('gtd', require('telescope.builtin').lsp_type_definitions, '[G]oto [T]ype [D]efinition')
+
+          if vim.bo[event.buf].filetype == 'go' then
+            map('grn', require('go.rename').lsprename, '[R]e[n]ame')
+            map('<leader>ca', require('go.codeaction').run_code_action, 'range code action', { 'v' })
+          end
 
           -- This function resolves a difference between neovim nightly (version 0.11) and stable (version 0.10)
           ---@param client vim.lsp.Client
@@ -123,6 +130,7 @@ return {
           if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
             map('<leader>tt', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+              print('Inlay hints set to:', vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
             end, '[T]oggle [T]ype Inlay Hints')
           end
         end,
@@ -169,19 +177,6 @@ return {
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        gopls = {
-          settings = {
-            gopls = {
-              gofumpt = true,
-              symbolScope = 'workspace',
-              ['ui.inlayhint.hints'] = {
-                compositeLiteralFields = true,
-                constantValues = true,
-                parameterNames = true,
-              },
-            },
-          },
-        },
         golangci_lint_ls = {},
         lua_ls = {
           -- cmd = { ... },
@@ -222,6 +217,9 @@ return {
           end,
         },
       }
+
+      -- disable inlay hints by default
+      vim.lsp.inlay_hint.enable(false)
     end,
   },
 }

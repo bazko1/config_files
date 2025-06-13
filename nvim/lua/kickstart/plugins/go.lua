@@ -8,6 +8,7 @@ return {
       'theHamsta/nvim-dap-virtual-text',
     },
     opts = {
+      lsp_keymaps = false,
       luasnip = true,
       virtual_text = false,
     },
