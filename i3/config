@@ -223,6 +223,7 @@ bar {
 }
 
 bindsym $mod+b exec --no-startup-id  ~/.scripts/run_url.sh "$(rofi -dmenu)"
+bindsym $mod+m exec --no-startup-id rofimoji
 bindsym $mod+n workspace next
 bindsym $mod+p workspace prev
 bindsym $mod+x [urgent=latest] focus
