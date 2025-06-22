@@ -11,6 +11,8 @@ return {
       lsp_keymaps = false,
       luasnip = true,
       virtual_text = false,
+      gofmt = 'gofumpt',
+      lsp_gofumpt = true,
     },
     event = { 'CmdlineEnter' },
     ft = { 'go', 'gomod' },
