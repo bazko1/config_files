@@ -12,7 +12,7 @@ require('lazy').setup({
 
   require 'kickstart.plugins.todo-comments',
 
-  require 'kickstart.plugins.onedark',
+  require 'kickstart.plugins.colorscheme',
 
   require 'kickstart.plugins.mini',
 
