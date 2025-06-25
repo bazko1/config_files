@@ -178,6 +178,7 @@ return {
       local servers = {
         -- clangd = {},
         golangci_lint_ls = {},
+        gopls = {},
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },
@@ -217,9 +218,6 @@ return {
           end,
         },
       }
-
-      -- disable inlay hints by default
-      vim.lsp.inlay_hint.enable(false)
     end,
   },
 }
