@@ -2,9 +2,11 @@
 	editor = nvim
 [alias]
 	a = add
+	ap = add -p
 	b = branch
 	c = commit
 	d = diff
+	ds = diff --staged
 	l = log
 	p = push
 	s = status
