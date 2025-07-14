@@ -13,3 +13,4 @@ export  CONFIG_DIR
 export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin:/opt/nvim-linux64/bin:$HOME/.cargo/bin:$HOME/.scripts:$HOME/bin"
 export EDITOR=nvim
 export VISUAL=nvim
+export BASH_ENV="~/.bash_aliases"

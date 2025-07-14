@@ -1,4 +1,5 @@
 # aliases
+[ -z "$FISH_VERSION" ] && shopt -s expand_aliases
 
 alias docker_rm_stoped='docker rm $(docker ps -a -q)'
 alias shortps="PS1='\[\033[01;34m\]\W\[\033[00m\]\$ '"
