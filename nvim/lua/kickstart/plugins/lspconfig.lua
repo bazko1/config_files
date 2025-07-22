@@ -177,7 +177,15 @@ return {
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
         -- clangd = {},
-        golangci_lint_ls = {},
+        golangci_lint_ls = {
+          default_config = {
+            cmd = { 'golangci-lint-langserver' },
+            init_options = {
+              command = { 'golangci-lint', 'run', '--output.json.path', 'stdout', '--show-stats=false', '--issues-exit-code=1' },
+            },
+          },
+          filetypes = { 'go', 'gomod' },
+        },
         gopls = {},
         lua_ls = {
           -- cmd = { ... },
@@ -206,7 +214,12 @@ return {
       require('mason-lspconfig').setup {
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         automatic_installation = false,
-        automatic_enable = true,
+        automatic_enable = {
+          exclude = {
+            'golangci_lint_ls',
+            'gopls',
+          },
+        },
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}

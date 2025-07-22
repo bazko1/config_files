@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- shows whitespaces when entering visual-line mode
 -- NOTE: If added extra 'v' to the pattern the visual will also include change
 vim.api.nvim_create_autocmd('ModeChanged', {
-  pattern = '*:[V\x16]*',
+  pattern = '*:[V\22]*',
   callback = function()
     if vim.bo.buftype == 'terminal' then
       return
@@ -52,7 +52,7 @@ vim.api.nvim_create_autocmd('ModeChanged', {
   end,
 })
 vim.api.nvim_create_autocmd('ModeChanged', {
-  pattern = '[V\x16]*:*',
+  pattern = '[V\22]*:*',
   callback = function()
     if vim.bo.buftype == 'terminal' then
       return

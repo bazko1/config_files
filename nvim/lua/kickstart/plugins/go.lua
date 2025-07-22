@@ -15,6 +15,9 @@ return {
       lsp_gofumpt = true,
       lsp_cfg = true,
       lsp_inlay_hints = { enable = true },
+      golangci_lint = {
+        default = 'fast',
+      },
     },
     event = { 'CmdlineEnter' },
     ft = { 'go', 'gomod' },
