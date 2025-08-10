@@ -63,5 +63,5 @@ vim.opt.confirm = true
 
 vim.opt.guicursor = ''
 
--- disable swwapfile
+-- disable swapfile
 vim.opt.swapfile = false

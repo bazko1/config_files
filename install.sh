@@ -32,10 +32,8 @@ else
 fi
 createLink "bash/" ".bash"
 
-createLink "nvim" ".config/nvim"
-
-mkdir -p "${INSTALL_DIR}/.config/nvim-minimal"
-createLink "minimal.lua" ".config/nvim-minimal/init.lua"
+createLink "nvim/lazy" ".config/nvim"
+createLink "nvim/minimal" ".config/nvim-minimal"
 
 mkdir -p "${INSTALL_DIR}/.config/fish"
 createLink "config.fish" ".config/fish/config.fish"
