@@ -95,7 +95,7 @@ function NetrwPop()
 			vim.api.nvim_win_close(netrw_win, false)
 		end
 	else
-		local new_win = vim.api.nvim_open_win(0, true, { win = 0, split = "right" })
+		local new_win = vim.api.nvim_open_win(0, true, { win = 0, split = "right", width=60 })
 		if new_win then
 			vim.api.nvim_win_call(new_win, function()
 				vim.cmd("Explore .")
