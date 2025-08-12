@@ -12,6 +12,7 @@ return {
       luasnip = true,
       virtual_text = false,
       gofmt = 'gofumpt',
+      goimports = 'goimports',
       lsp_gofumpt = true,
       lsp_cfg = true,
       lsp_inlay_hints = { enable = true },

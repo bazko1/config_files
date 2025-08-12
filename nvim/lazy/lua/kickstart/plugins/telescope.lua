@@ -51,13 +51,6 @@ return {
               return { '--hidden', '--glob', '!**/.git/*' }
             end,
           },
-          buffers = {
-            mappings = {
-              i = {
-                ['<C-d>'] = 'delete_buffer',
-              },
-            },
-          },
         },
         extensions = {
           ['ui-select'] = {
