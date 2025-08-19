@@ -8,6 +8,7 @@ alias watch_go_lint='watchexec -e go -- golangci-lint run ./...'
 alias watch_go_test='watchexec -e go -- go test ./...'
 alias fcd='`__fzf_cd__`'
 alias v=nvim
+alias vm='NVIM_APPNAME=nvim-minimal nvim'
 alias oldv='nvim -u $HOME/gitworkspace/config_files/init.lua'
 alias g=git
 alias k=kubectl
