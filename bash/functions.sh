@@ -18,3 +18,7 @@ n() {
     rm -f "$NNN_TMPFILE" > /dev/null
   fi
 }
+
+jwt_decode(){
+    jq -R 'split(".") | .[1] | @base64d | fromjson' <<< "$1"
+}
