@@ -12,7 +12,7 @@ n() {
   fi
 
   export NNN_TMPFILE="$HOME/.config/nnn/.lastd"
-  nnn -adeHo "$@"
+  nnn -adeHoTt "$@"
   if [ -f "$NNN_TMPFILE" ]; then
     . "$NNN_TMPFILE"
     rm -f "$NNN_TMPFILE" > /dev/null
