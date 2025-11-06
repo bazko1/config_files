@@ -14,3 +14,5 @@ export PATH="$PATH:/usr/local/go/bin:$HOME/go/bin:/opt/nvim-linux64/bin:$HOME/.c
 export EDITOR=nvim
 export VISUAL=nvim
 export BASH_ENV="~/.bash_aliases"
+export GTK_THEME=Adwaita:dark
+

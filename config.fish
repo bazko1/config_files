@@ -12,6 +12,7 @@ set -gx CONFIG_DIR (dirname (realpath (status -f)))
 set -gx EDITOR nvim
 set -gx VISUAL nvim
 set PATH -gx "$PATH:/usr/local/go/bin:$HOME/go/bin:/opt/nvim-linux64/bin:$HOME/.cargo/bin:$HOME/.scripts:$HOME/bin"
+set -gx GTK_THEME Adwaita:dark
 
 function n
     if [ -n "$NNNLVL" ] && [ "$NNNLVL" -ge 1 ]
