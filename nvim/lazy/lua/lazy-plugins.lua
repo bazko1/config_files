@@ -40,6 +40,7 @@ require('lazy').setup({
   },
   {
     'f-person/git-blame.nvim',
+    branch = 'main',
     opts = {
       enabled = false,
       date_format = '%r | %m-%d-%Y ',

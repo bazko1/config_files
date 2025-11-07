@@ -65,3 +65,6 @@ vim.opt.guicursor = ''
 
 -- disable swapfile
 vim.opt.swapfile = false
+
+-- enable .exrc
+vim.opt.exrc = true
