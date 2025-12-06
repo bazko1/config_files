@@ -23,6 +23,8 @@ require('lazy').setup({
   require 'kickstart.plugins.neo-tree',
 
   require 'kickstart.plugins.go',
+
+  require 'kickstart.plugins.git-blame',
   --
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
@@ -37,14 +39,6 @@ require('lazy').setup({
   {
     'chentoast/marks.nvim',
     opts = {},
-  },
-  {
-    'f-person/git-blame.nvim',
-    branch = 'main',
-    opts = {
-      enabled = false,
-      date_format = '%r | %m-%d-%Y ',
-    },
   },
 }, {
   ui = {
