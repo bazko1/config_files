@@ -36,6 +36,8 @@ exec --no-startup-id picom &
 
 # volume control
 exec --no-startup-id volctl &
+# start clipmenu
+exec --no-startup-id CM_IGNORE_WINDOW=KeePass clipmenud &
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -85,6 +87,7 @@ bindsym $mod+d exec --no-startup-id GTK_THEME=Adwaita:dark rofi -modi run -show 
 bindsym $mod+r exec --no-startup-id GTK_THEME=Adwaita:dark rofi -modi drun -show drun -show-icons
 bindsym $mod+t exec --no-startup-id GTK_THEME=Adwaita:dark rofi -modi window -show window -show-icons
 bindsym $mod+Tab exec --no-startup-ie GTK_THEME=Adwaita:dark rofi -modi window -show window
+bindsym $mod+Shift+p exec --no-startup-id  CM_LAUNCHER=rofi clipmenu
 
 # rofi -run-shell-command 'kitty --hold {cmd}'
 #

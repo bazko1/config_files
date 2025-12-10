@@ -11,7 +11,7 @@ configuration {
   font: "Noto Sans Mono 13";
 
   drun {
-    display-name: "";
+    display-name: "🏃‍➡️";
   }
 
   run {
@@ -23,7 +23,7 @@ configuration {
   }
 
   dmenu {
-    display-name: "";
+    display-name: "";
   }
 
   timeout {
