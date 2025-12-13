@@ -7,10 +7,18 @@ return {
       {
         '<leader>f',
         function()
-          require('conform').format { async = true, lsp_format = 'fallback' }
+          require('conform').format { async = true } --, lsp_format = 'fallback' }
         end,
         mode = '',
         desc = '[F]ormat buffer',
+      },
+      {
+        '<leader>ci',
+        function()
+          require('conform').format { async = true, formatters = { 'golangci-lint' } }
+        end,
+        mode = '',
+        desc = 'run golang[ci]-lint',
       },
     },
     opts = {
