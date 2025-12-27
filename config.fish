@@ -22,7 +22,7 @@ function n
 
     set NNN_TMPFILE "$HOME/.config/nnn/.lastd"
 
-    nnn -adeHo "$argv"
+    nnn -adeHoTt "$argv"
     if [ -f "$NNN_TMPFILE" ]
         source "$NNN_TMPFILE"
         rm -f "$NNN_TMPFILE" >/dev/null
