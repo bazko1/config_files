@@ -9,3 +9,4 @@ which helm  2>/dev/null 1>&2 && source <(helm completion bash)
 which nelm  2>/dev/null 1>&2 && source <(nelm completion bash)
 # git completion
 [ -f "/usr/share/bash-completion/completions/git" ] && source "/usr/share/bash-completion/completions/git" && __git_complete g _git_main
+which kind 2>/dev/null 1>&2 && source <(kind completion bash)

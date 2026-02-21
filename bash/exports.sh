@@ -16,3 +16,6 @@ export VISUAL=nvim
 export BASH_ENV="~/.bash_aliases"
 export GTK_THEME=Adwaita:dark
 
+BASH_SECRETS_ENV="./bash_secrets.sh"
+
+[ -a $BASH_SECRETS_ENV ] && . "$BASH_SECRETS_ENV"

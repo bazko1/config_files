@@ -20,3 +20,5 @@ alias myconfig_install='$CONFIG_DIR/install.sh'
 alias lss='ls -larth'
 alias kind_set_config='kind get kubeconfig --name $(kind get clusters) >  ~/.kube/config '
 alias save_clipboard_img='xclip -selection clipboard -t image/png -o > '
+alias pandock='docker run --rm -v "$(pwd):/data" -u $(id -u):$(id -g) pandoc/core'
+alias jwtDecode='jq -R '"'"'split(".") | .[1] | @base64d | fromjson'"'"

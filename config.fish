@@ -6,11 +6,14 @@ end
 
 set fish_greeting
 source ~/.bash/aliases.sh
+[ -e ~/.bash/bash_secrets.sh ] && source ~/.bash/bash_secrets.sh
+
 eval "$(fzf --fish)"
 
 set -gx CONFIG_DIR (dirname (realpath (status -f)))
 set -gx EDITOR nvim
 set -gx VISUAL nvim
+export MANPAGER='nvim +Man!'
 set PATH -gx "$PATH:/usr/local/go/bin:$HOME/go/bin:/opt/nvim-linux64/bin:$HOME/.cargo/bin:$HOME/.scripts:$HOME/bin"
 set -gx GTK_THEME Adwaita:dark
 
