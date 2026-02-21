@@ -1,6 +1,11 @@
 -- options
 vim.g.mapleader = " "
 
+-- Decrease update time
+vim.opt.updatetime = 250
+-- Decrease mapped sequence wait time
+vim.opt.timeoutlen = 300
+
 vim.opt.number = true
 -- spellcheck
 vim.opt.spell = true
@@ -95,7 +100,7 @@ function NetrwPop()
 			vim.api.nvim_win_close(netrw_win, false)
 		end
 	else
-		local new_win = vim.api.nvim_open_win(0, true, { win = 0, split = "right", width=60 })
+		local new_win = vim.api.nvim_open_win(0, true, { win = 0, split = "right", width=80 })
 		if new_win then
 			vim.api.nvim_win_call(new_win, function()
 				vim.cmd("Explore .")
@@ -121,3 +126,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank({ timeout = 500, on_visual = false })
 	end,
 })
+
+-- commands
+vim.api.nvim_create_user_command('TrimWhiteSpace', '%s/\\s\\+$//e', {})
+vim.api.nvim_create_user_command('FormatJSON', ':%!jq .', {})
+vim.api.nvim_create_user_command('Python3', ':vs | term python3', {})
+
+
