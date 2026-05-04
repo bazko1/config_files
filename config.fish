@@ -9,6 +9,7 @@ source ~/.bash/aliases.sh
 [ -e ~/.bash/bash_secrets.sh ] && source ~/.bash/bash_secrets.sh
 
 eval "$(fzf --fish)"
+export FZF_CTRL_R_OPTS="--with-nth=3.."
 
 set -gx CONFIG_DIR (dirname (realpath (status -f)))
 set -gx EDITOR nvim
@@ -33,4 +34,20 @@ function n
 end
 function docker_rm_unnamed
     docker image rm $(docker image ls | grep '^<none>' | awk '{print $3}')
+end
+
+function kind_set_config
+    set -f cluster_name $argv[1]
+    if test -z "$cluster_name"
+        set -f cluster_name $(kind get clusters)
+    end
+    kind get kubeconfig --name $cluster_name > ~/.kube/config
+end
+
+function kind_delete_cluster
+    set -f cluster_name $argv[1]
+    if test -z "$cluster_name"
+        set -f cluster_name $(kind get clusters)
+    end
+    kind delete cluster --name $cluster_name
 end

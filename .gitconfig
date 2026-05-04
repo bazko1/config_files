@@ -5,6 +5,7 @@
 	ap = add -p
 	b = branch
 	c = commit
+	ch = checkout
 	d = diff
 	ds = diff --staged
 	l = log
@@ -27,3 +28,18 @@
 	ui = auto
 [user]
 	name = bazko1
+
+# delta config
+[core]
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true  # use n and N to move between diff sections
+    dark = true      # or light = true, or omit for auto-detection
+    side-by-side = true
+[merge]
+    conflictStyle = zdiff3
+
+# vi: ft=gitconfig

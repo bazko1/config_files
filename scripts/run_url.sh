@@ -1,6 +1,6 @@
 #!/bin/bash
 
-YT_PLAYER=mpv
+YT_PLAYER="mpv --window-scale=0.2"
 BROWSER=vivaldi
 
 URL="$1"
