@@ -38,6 +38,11 @@ return {
           },
         },
         pickers = {
+          marks = {
+            mappings = {
+              i = { ['<A-d>'] = 'delete_mark' },
+            },
+          },
           find_files = {
             hidden = true,
           },
@@ -77,6 +82,7 @@ return {
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>gs', builtin.git_status, { desc = 'Search [G]it [S]tatus' })
+      vim.keymap.set('n', '<leader>ch', builtin.command_history, { desc = 'Search [C]ommand [H]istory' })
 
       -- vim.keymap.set('n', '<leader>b', function()
       --   require('telescope.builtin').buffers { sort_lastused = true }
@@ -92,7 +98,7 @@ return {
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-          winblend = 10,
+          -- winblend = 10,
           previewer = false,
         })
       end, { desc = '[/] Fuzzily search in current buffer' })

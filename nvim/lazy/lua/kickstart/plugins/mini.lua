@@ -20,6 +20,7 @@ return {
       local statusline = require 'mini.statusline'
 
       statusline.setup { use_icons = vim.g.have_nerd_font }
+      require('mini.git').setup()
 
       -- cursor location to LINE:COLUMN
       ---@diagnostic disable-next-line: duplicate-set-field

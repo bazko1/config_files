@@ -10,9 +10,12 @@ return {
     opts = {
       lsp_keymaps = false,
       luasnip = true,
+      lsp_codelens = false,
       virtual_text = false,
       lsp_gofumpt = true,
-      lsp_cfg = true,
+      gofmt = 'gofumpt',
+      goimports = 'gofmt',
+      lsp_cfg = { settings = { gopls = { analyses = { ST1000 = false }, staticcheck = false } } },
       lsp_inlay_hints = { enable = true },
       golangci_lint = {
         default = 'fast',
@@ -25,6 +28,14 @@ return {
       require('go').setup(opts)
       -- disable inlay hints by default
       vim.lsp.inlay_hint.enable(false)
+      local format_sync_grp = vim.api.nvim_create_augroup('GoFormat', {})
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        pattern = '*.go',
+        callback = function()
+          require('go.format').goimports()
+        end,
+        group = format_sync_grp,
+      })
     end,
   },
 }

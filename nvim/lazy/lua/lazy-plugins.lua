@@ -30,7 +30,20 @@ require('lazy').setup({
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
-
+  {
+    'qvalentin/helm-ls.nvim',
+    ft = 'helm',
+    opts = {
+      conceal_templates = {
+        -- the replacement of templates with virtual text of their current values
+        enabled = false,
+      },
+    },
+  },
+  {
+    'esmuellert/codediff.nvim',
+    cmd = 'CodeDiff',
+  },
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   -- { import = 'custom.plugins' },
   --
