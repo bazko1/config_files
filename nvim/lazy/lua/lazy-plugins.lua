@@ -20,7 +20,7 @@ require('lazy').setup({
 
   require 'kickstart.plugins.debug',
 
-  require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.files',
 
   require 'kickstart.plugins.go',
 

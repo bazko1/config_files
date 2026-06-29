@@ -24,6 +24,7 @@ vim.schedule(function()
 end)
 -- Enable break indent
 vim.opt.breakindent = true
+vim.opt.linebreak = true
 -- Save undo history
 vim.opt.undofile = true
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
@@ -31,8 +32,6 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 -- do not use linewrap by default
 vim.opt.wrap = false
--- do not break by words at the end of the line
-vim.opt.linebreak = false
 -- Keep signcolumn on by default
 vim.opt.signcolumn = 'yes'
 -- Decrease update time
