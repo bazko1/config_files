@@ -26,6 +26,10 @@ configuration {
     display-name: "";
   }
 
+  browser {
+    display-name: "";
+  }
+
   timeout {
     delay: 10;
     action: "kb-cancel";
@@ -43,6 +47,7 @@ configuration {
 	blue: #61AFEF;
 	blue-alt: #61AFEF15;
 	red: #E06C75;
+	white: #FFFFFF15;
   red-alt: #E06C7515;
 
   background-color: @bg;
