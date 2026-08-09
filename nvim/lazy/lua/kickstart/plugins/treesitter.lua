@@ -18,6 +18,13 @@ return {
         if not vim.treesitter.language.add(language) then
           return
         end
+        -- some parsers are present on disk (e.g. stale `master`-branch builds) but have
+        -- no `highlights` query shipped by nvim-treesitter's `main` branch, e.g. tmux.
+        -- Starting treesitter anyway would clear the buffer's `syntax` option and leave
+        -- no highlighting at all. Skip it so Vim's built-in syntax highlighting is used.
+        if not vim.treesitter.query.get(language, 'highlights') then
+          return
+        end
         -- enables syntax highlighting and other treesitter features
         vim.treesitter.start(buf, language)
 
