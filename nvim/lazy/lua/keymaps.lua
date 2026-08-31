@@ -17,10 +17,10 @@ vim.keymap.set('t', '<C-space>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('ca', 'tn', 'tabnew')
 
 -- change split sizes as arrows
-vim.keymap.set('n', '<left>', '<C-W>5<')
-vim.keymap.set('n', '<right>', '<C-W>5>')
-vim.keymap.set('n', '<up>', '<C-W>5-')
-vim.keymap.set('n', '<down>', '<C-W>5+')
+vim.keymap.set({ 'n', 'v' }, '<left>', '<C-W>5<')
+vim.keymap.set({ 'n', 'v' }, '<right>', '<C-W>5>')
+vim.keymap.set({ 'n', 'v' }, '<up>', '<C-W>5-')
+vim.keymap.set({ 'n', 'v' }, '<down>', '<C-W>5+')
 --
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -30,7 +30,7 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- copy current filename:line
-vim.keymap.set('n', '<Leader>l', ":let @+ = expand('%') . ':' . line('.')<CR>", { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Leader>l', ":let @+ = expand('%') . ':' . line('.')<CR>", { silent = true })
 
 -- [[ Basic Autocommands ]]
 -- Highlight when yanking (copying) text
