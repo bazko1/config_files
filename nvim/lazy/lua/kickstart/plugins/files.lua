@@ -5,7 +5,11 @@ return {
     ---@type oil.SetupOpts
     opts = {},
     config = function()
-      require('oil').setup()
+      require('oil').setup {
+        keymaps = {
+          ['g\\'] = { 'actions.cd', opts = { scope = 'tab' }, mode = 'n', nowait = true },
+        },
+      }
       vim.keymap.set('n', '\\', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
     end,
     -- Optional dependencies
